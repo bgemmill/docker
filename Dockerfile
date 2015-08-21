@@ -18,7 +18,7 @@ RUN curl -L http://download.jetbrains.com/python/pycharm-community-4.5.3.tar.gz 
 RUN mv pycharm* /opt/pycharm
 
 # C++ IDE
-# why does qtcreator suck so hard at automatic installing?
+# why does qtcreator make this harder than necessary?
 RUN wget http://download.qt.io/official_releases/qtcreator/3.4/3.4.2/qt-creator-opensource-linux-x86_64-3.4.2.run
 RUN mv qt-creator* qt-creator-installer.run
 RUN chmod a+x qt-creator-installer.run
