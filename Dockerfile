@@ -5,6 +5,7 @@ RUN useradd -m docker
 RUN apt-get update && apt-get install -y \
       curl wget p7zip-full \
       vim gedit \
+      git \
       default-jdk \
       python \
       cmake gcc g++
