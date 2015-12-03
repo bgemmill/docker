@@ -5,7 +5,7 @@ RUN useradd -m docker
 RUN apt-get update && apt-get install -y \
       vim \
       git ssh rsync \
-      python \
+      python
       
 # non-root user for running things and x forwarding
 USER docker
