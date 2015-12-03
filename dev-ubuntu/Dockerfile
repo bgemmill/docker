@@ -1,7 +1,8 @@
 # A disposable development environment for java, python, and c++
 
 FROM ubuntu:latest
-RUN useradd -m docker
+MAINTAINER benjamin.gemmill@gmail.com
+
 RUN apt-get update && apt-get install -y \
       curl \
       vim gedit \
@@ -23,6 +24,7 @@ RUN curl -L https://download.jetbrains.com/cpp/clion-1.2.1.tar.gz | tar xz
 RUN mv clion* /opt/clion
 
 # non-root user for running things and x forwarding
+RUN useradd -m docker
 USER docker
 ENV JAVA_HOME /usr/lib/jvm/default-java # to find the jdk
 ENV QT_X11_NO_MITSHM 1 # for qt to work over a shared x socket with the docker host
