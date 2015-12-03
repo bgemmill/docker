@@ -7,7 +7,8 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && apt-get install -y \
       openssh-server \
-      vim
+      vim \
+      rsync
 
 RUN mkdir /var/run/sshd
 
