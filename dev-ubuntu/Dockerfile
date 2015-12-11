@@ -18,11 +18,11 @@ RUN curl -L https://download.jetbrains.com/idea/ideaIC-15.0.2.tar.gz | tar xz
 RUN mv idea* /opt/idea
 
 # Python IDE
-RUN curl -L https://download.jetbrains.com/python/pycharm-community-5.0.1.tar.gz | tar xz
+RUN curl -L https://download.jetbrains.com/python/pycharm-community-5.0.2.tar.gz | tar xz
 RUN mv pycharm* /opt/pycharm
 
 # C++ IDE
-RUN curl -L https://download.jetbrains.com/cpp/clion-1.2.1.tar.gz | tar xz
+RUN curl -L https://download.jetbrains.com/cpp/clion-1.2.2.tar.gz | tar xz
 RUN mv clion* /opt/clion
 
 # non-root user for running things and x forwarding
