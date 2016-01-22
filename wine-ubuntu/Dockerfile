@@ -24,11 +24,10 @@ RUN mv wine_gecko-2.40-x86.msi /usr/share/wine/gecko/
 RUN useradd -m docker
 USER docker
 
-# Generate wine settings
-RUN xvfb-run wine "wineboot"
+# Generate wine settings, waiting for wineserver to finish
+RUN xvfb-run wine "wineboot" && while pgrep -u `whoami` wineserver > /dev/null; do sleep 1; done
 
 # For reference, generate wine settings for 32 bit windows in a custom location
 #RUN WINEPREFIX="/home/$(whoami)/.wine32" WINEARCH="win32" xvfb-run wine "wineboot"
 
-CMD wine
-#CMD wine "./.wine/drive_c/Program Files/Internet Explorer/iexplore.exe"
+#CMD wine "/home/docker/.wine/drive_c/Program Files/Internet Explorer/iexplore.exe"
