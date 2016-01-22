@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y \
       wine-gecko2.40 \
       xvfb
       
-# wine-gecko x68 from here: http://wiki.winehq.org/Gecko
+# wine-gecko x86 from here: http://wiki.winehq.org/Gecko
 # Note this is only because the published wine-gecko2.40 package only provides the x64 binaries
 RUN wget http://dl.winehq.org/wine/wine-gecko/2.40//wine_gecko-2.40-x86.msi
 RUN mv wine_gecko-2.40-x86.msi /usr/share/wine/gecko/ 
