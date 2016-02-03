@@ -18,7 +18,7 @@ RUN curl -L https://download.jetbrains.com/idea/ideaIC-15.0.2.tar.gz | tar xz
 RUN mv idea* /opt/idea
 
 # Python IDE
-RUN curl -L https://download.jetbrains.com/python/pycharm-community-5.0.3.tar.gz | tar xz
+RUN curl -L https://download.jetbrains.com/python/pycharm-community-5.0.4.tar.gz | tar xz
 RUN mv pycharm* /opt/pycharm
 
 # C++ IDE
