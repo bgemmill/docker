@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
       cmake gcc g++
       
 # Java IDE
-RUN curl -L https://download.jetbrains.com/idea/ideaIC-15.0.2.tar.gz | tar xz
+RUN curl -L https://download.jetbrains.com/idea/ideaIC-15.0.4.tar.gz | tar xz
 RUN mv idea* /opt/idea
 
 # Python IDE
