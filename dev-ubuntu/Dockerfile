@@ -14,16 +14,13 @@ RUN apt-get update && apt-get install -y \
       cmake g++ g++-multilib
       
 # Java IDE
-RUN curl -L https://download.jetbrains.com/idea/ideaIC-2016.1.tar.gz | tar xz
-RUN mv idea* /opt/idea
+RUN curl -L https://download.jetbrains.com/idea/ideaIC-2016.1.tar.gz | tar xz && mv idea* /opt/idea
 
 # Python IDE
-RUN curl -L https://download.jetbrains.com/python/pycharm-community-5.0.4.tar.gz | tar xz
-RUN mv pycharm* /opt/pycharm
+RUN curl -L https://download.jetbrains.com/python/pycharm-community-5.0.4.tar.gz | tar xz && mv pycharm* /opt/pycharm
 
 # C++ IDE
-RUN curl -L https://download.jetbrains.com/cpp/CLion-2016.1.tar.gz | tar xz
-RUN mv clion* /opt/clion
+RUN curl -L https://download.jetbrains.com/cpp/CLion-2016.1.tar.gz | tar xz && mv clion* /opt/clion
 
 # non-root user for running things and x forwarding
 RUN useradd -m docker
