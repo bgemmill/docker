@@ -13,13 +13,10 @@ RUN apt-get update && apt-get install -y \
 RUN mkdir /var/run/sshd
 
 ADD authorized_keys /root/.ssh/authorized_keys
-RUN chmod 700 /root/.ssh
-RUN chmod 600 /root/.ssh/*
-RUN chown -Rf root:root /root/.ssh
+RUN chmod 700 /root/.ssh && chmod 600 /root/.ssh/* && chown -Rf root:root /root/.ssh
 
 # configure sshd to block authentication via password
-RUN sed -i.bak 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
-RUN rm /etc/ssh/sshd_config.bak
+RUN sed 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config
 
 EXPOSE 22
 
