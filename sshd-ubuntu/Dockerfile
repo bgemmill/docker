@@ -8,7 +8,8 @@ RUN locale-gen en_US.UTF-8
 RUN apt-get update && apt-get install -y \
       openssh-server \
       vim \
-      rsync
+      rsync \
+      && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /var/run/sshd
 
