@@ -1,6 +1,6 @@
 # Run windows programs like a champion
 
-FROM ubuntu:latest
+FROM ubuntu:14.04
 MAINTAINER benjamin.gemmill@gmail.com
 
 RUN locale-gen en_US.UTF-8
