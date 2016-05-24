@@ -26,6 +26,9 @@ RUN curl -L https://download.jetbrains.com/cpp/CLion-2016.1.1.tar.gz | tar xz &&
 ENV JAVA_HOME /usr/lib/jvm/default-java # to find the jdk
 ENV QT_X11_NO_MITSHM 1 # for qt to work over a shared x socket with the docker host
 
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+
 #CMD /opt/idea/bin/idea.sh > /dev/null 2>&1
 #CMD /opt/pycharm/bin/pycharm.sh > /dev/null 2>&1
 #CMD /opt/clion/bin/clion.sh > /dev/null 2>&1
