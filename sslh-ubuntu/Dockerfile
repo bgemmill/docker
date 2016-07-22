@@ -1,4 +1,4 @@
-# sslh for connection redirections if only a subset of ports are accessible
+# Protocol multiplexing in case some ports aren't available
 
 FROM ubuntu:latest
 MAINTAINER benjamin.gemmill@gmail.com
