@@ -12,3 +12,8 @@ Without needing to install wine's vast list of dependencies onto your host syste
 A reasonable terminal environment for any NAS that can run docker
 
 When your NAS runs docker but not bash. I'm looking at you, Synology.
+
+# sslh-ubuntu
+Protocol multiplexing in case some ports aren't available
+
+Why be strict about protocols and ports?
