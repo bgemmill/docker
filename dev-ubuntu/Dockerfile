@@ -15,13 +15,13 @@ RUN apt-get update && apt-get install -y \
       && rm -rf /var/lib/apt/lists/*
       
 # Java IDE
-RUN curl -L https://download.jetbrains.com/idea/ideaIC-2016.1.1.tar.gz | tar xz && mv idea* /opt/idea
+RUN curl -L https://download.jetbrains.com/idea/ideaIC-2016.2.tar.gz | tar xz && mv idea* /opt/idea
 
 # Python IDE
-RUN curl -L https://download.jetbrains.com/python/pycharm-community-2016.1.2.tar.gz | tar xz && mv pycharm* /opt/pycharm
+RUN curl -L https://download.jetbrains.com/python/pycharm-community-2016.2.tar.gz | tar xz && mv pycharm* /opt/pycharm
 
 # C++ IDE
-RUN curl -L https://download.jetbrains.com/cpp/CLion-2016.1.1.tar.gz | tar xz && mv clion* /opt/clion
+RUN curl -L https://download.jetbrains.com/cpp/CLion-2016.2.tar.gz | tar xz && mv clion* /opt/clion
 
 ENV JAVA_HOME /usr/lib/jvm/default-java # to find the jdk
 ENV QT_X11_NO_MITSHM 1 # for qt to work over a shared x socket with the docker host
