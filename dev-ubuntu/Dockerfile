@@ -20,8 +20,8 @@ RUN curl -L https://download.jetbrains.com/idea/ideaIC-2016.2.tar.gz | tar xz &&
 
 # Python IDE
 RUN curl -L https://download.jetbrains.com/python/pycharm-community-2016.2.tar.gz | tar xz && mv pycharm* /opt/pycharm
-"/usr/bin/python"  "/opt/pycharm/helpers/pydev/setup_cython.py" build_ext --inplace
-"/usr/bin/python3" "/opt/pycharm/helpers/pydev/setup_cython.py" build_ext --inplace
+RUN python  /opt/pycharm/helpers/pydev/setup_cython.py build_ext --inplace
+RUN python3 /opt/pycharm/helpers/pydev/setup_cython.py build_ext --inplace
 
 # C++ IDE
 RUN curl -L https://download.jetbrains.com/cpp/CLion-2016.2.tar.gz | tar xz && mv clion* /opt/clion
