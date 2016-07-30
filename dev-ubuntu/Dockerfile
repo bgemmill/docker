@@ -6,6 +6,7 @@ MAINTAINER benjamin.gemmill@gmail.com
 RUN locale-gen en_US.UTF-8
 
 RUN apt-get update && apt-get install -y \
+      gksu \
       curl \
       vim gedit \
       git ssh rsync \
@@ -20,8 +21,6 @@ RUN curl -L https://download.jetbrains.com/idea/ideaIC-2016.2.tar.gz | tar xz &&
 
 # Python IDE
 RUN curl -L https://download.jetbrains.com/python/pycharm-community-2016.2.tar.gz | tar xz && mv pycharm* /opt/pycharm
-RUN python  /opt/pycharm/helpers/pydev/setup_cython.py build_ext --inplace
-RUN python3 /opt/pycharm/helpers/pydev/setup_cython.py build_ext --inplace
 
 # C++ IDE
 RUN curl -L https://download.jetbrains.com/cpp/CLion-2016.2.tar.gz | tar xz && mv clion* /opt/clion
