@@ -30,7 +30,8 @@ ENV QT_X11_NO_MITSHM 1 # for qt to work over a shared x socket with the docker h
 
 #gosu
 RUN wget -O /usr/local/bin/gosu \
-  "https://github.com/tianon/gosu/releases/download/1.9/gosu-$(dpkg --print-architecture | awk -F- '{ print $NF }')"
+  "https://github.com/tianon/gosu/releases/download/1.9/gosu-$(dpkg --print-architecture | awk -F- '{ print $NF }')" \
+  && chmod a+x /usr/local/bin/gosu
 
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

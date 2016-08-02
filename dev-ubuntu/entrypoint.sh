@@ -15,16 +15,5 @@ touch /home/$USER_NAME/.Xauthority; chown $USER_NAME /home/$USER_NAME/.Xauthorit
 # run command as user
 gosu $USER_NAME "$@"
 
-# Since su has problems starting up a shell with -c without screwing up signal handling (try quitting top with ctrl-c), we detect the docker zero-argument case and just drop the user into bash.
-# We could use gosu here, but that would both make the dockerfiles complex as well as make the images bigger.
-
-# note that docker's "zero argument" case starts up the dockerfile's CMD with sh
-#if [[ "$@" == "/bin/sh -c bash" ]]
-#then
-#  # No arguments passed to docker run, so drop the user into a shell
-#  exec su $USER_NAME
-#else
-#  # Forward any passed arguments on
-#  exec su $USER_NAME -c "$@"
-#fi
-
+# run command as root
+#"$@"
