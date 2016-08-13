@@ -1,0 +1,9 @@
+no_sig_cache
+ecryptfs_xattr
+ecryptfs_passthrough=n
+ecryptfs_cipher=aes
+ecryptfs_key_bytes=16
+ecryptfs_enable_filename_crypto=y
+
+passphrase_passwd=ECRYPTFS-FILE-CONTENTS-PASSWORD-GOES-HERE
+ecryptfs_fnek_sig=ECRYPTFS-FILE-NAME-16BYTE-PASSWORD-GOES-HERE
