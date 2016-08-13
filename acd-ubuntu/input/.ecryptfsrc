@@ -1,5 +1,4 @@
 no_sig_cache
-ecryptfs_xattr
 ecryptfs_passthrough=n
 ecryptfs_cipher=aes
 ecryptfs_key_bytes=16

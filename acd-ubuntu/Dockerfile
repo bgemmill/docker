@@ -12,14 +12,9 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -yq \
       minit \
       python3 python3-setuptools \
       ca-certificates \
-      git rsync wget \
-      fuse \
-      sudo \
-      && wget -O - https://www.cryfs.org/install.sh | sudo bash \
-      && SUDO_FORCE_REMOVE=yes apt-get purge -yq sudo \
+      git rsync \
+      fuse ecryptfs-utils \
       && rm -rf /var/lib/apt/lists/*
-      # ecryptfs-utils instead of cryfs when they finish their file size bug:
-      # https://bugs.launchpad.net/ecryptfs/+bug/1612492
 
 RUN easy_install3 -U pip \
   && pip3 install --upgrade git+https://github.com/bgemmill/acd_cli.git \

@@ -2,8 +2,7 @@
 
 # copy in config
 cp /input/oauth_data /root/.cache/acd_cli/oauth_data
-#cp /input/.ecryptfsrc /root/.ecryptfsrc
-cp /input/.cryfs.secrets /root/.cryfs.secrets
+cp /input/.ecryptfsrc /root/.ecryptfsrc
 cp /input/rsyncd.secrets /root/rsyncd.secrets && chmod a-r /root/rsyncd.secrets
 
 # make target directories
@@ -15,8 +14,7 @@ acd_cli sync
 acd_cli --no-log mount /mnt/acd-raw
 
 # mount encrypted filesystem over it
-#mount -t ecryptfs -o no_sig_cache /mnt/acd-raw /mnt/acd-decrypted
-cat /root/.cryfs.secrets | cryfs /mnt/acd-raw/ /mnt/acd-decrypted/
+mount -t ecryptfs -o no_sig_cache /mnt/acd-raw /mnt/acd-decrypted
 
 # show what our local ip is so other services can rsync here
 ip -o addr show eth0 | awk /'inet/ {print $2 "\t" $3 "\t" $4}'
