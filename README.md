@@ -17,3 +17,8 @@ When your NAS runs docker but not bash. I'm looking at you, Synology.
 Protocol multiplexing in case some ports aren't available
 
 Why be strict about protocols and ports?
+
+# acd-ubuntu
+Amazon Cloud Drive as an encrypted target for rsync
+
+When you want to back up all of your stuff and not show Amazon what it is. Note that you'll need to map in your encryption keys as /input/. Be sure to look at the example input directory for what it wants.
