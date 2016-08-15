@@ -20,4 +20,5 @@ mount -t ecryptfs -o no_sig_cache /mnt/acd-raw /mnt/acd-decrypted
 ip -o addr show eth0 | awk /'inet/ {print $2 "\t" $3 "\t" $4}'
 
 # rsyncd time
-/usr/bin/rsync --no-detach --daemon --config="/root/rsyncd.conf"
+/usr/bin/rsync --no-detach --daemon --config="/root/rsyncd.conf" &
+echo "startup complete"
