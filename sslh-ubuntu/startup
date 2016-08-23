@@ -20,4 +20,4 @@ echo ssh: $SSH_TARGET_ADDR
 echo web: $WEB_TARGET_ADDR
 echo ssl: $SSL_TARGET_ADDR
 echo vpn: $VPN_TARGET_ADDR
-sslh -p $LISTEN_ADDR --ssh $SSH_TARGET_ADDR --http $WEB_TARGET_ADDR --ssl $SSL_TARGET_ADDR --openvpn $VPN_TARGET_ADDR -f
+sslh -p $LISTEN_ADDR --ssh $SSH_TARGET_ADDR --http $WEB_TARGET_ADDR --ssl $SSL_TARGET_ADDR --openvpn $VPN_TARGET_ADDR #-f

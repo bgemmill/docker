@@ -5,11 +5,21 @@ MAINTAINER benjamin.gemmill@gmail.com
 
 RUN locale-gen en_US.UTF-8
 
+RUN apt-get update && apt-get install -y software-properties-common \
+  && add-apt-repository ppa:chazomaticus/minit
+
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-      sslh iproute2 \
-      && rm -rf /var/lib/apt/lists/*
+  minit \
+  sslh iproute2
       
 EXPOSE 443
 
-COPY entrypoint.sh /usr/local/bin/entrypoint.sh
-CMD ["/usr/local/bin/entrypoint.sh"]
+COPY startup /etc/minit/startup
+COPY shutdown /etc/minit/shutdown
+
+RUN apt-get purge -yq software-properties-common \
+  && apt-get autoremove -yq \
+  && apt-get autoclean -yq \
+  && rm -rf /var/lib/apt/lists/*
+
+ENTRYPOINT ["/sbin/minit"]

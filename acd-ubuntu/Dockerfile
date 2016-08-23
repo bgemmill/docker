@@ -32,9 +32,9 @@ COPY remount.sh /root/remount.sh
 COPY startup /etc/minit/startup
 COPY shutdown /etc/minit/shutdown
 
-RUN apt-get purge -yq software-properties-common ca-certificates curl git \
-  && apt-get autoremove -yq \
-  && apt-get autoclean -yq \
-  && rm -rf /var/lib/apt/lists/*
+#RUN apt-get purge -yq software-properties-common ca-certificates curl git \
+#  && apt-get autoremove -yq \
+#  && apt-get autoclean -yq \
+#  && rm -rf /var/lib/apt/lists/*
 
 ENTRYPOINT ["/sbin/minit"]
