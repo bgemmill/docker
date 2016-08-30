@@ -11,6 +11,7 @@ useradd -m $USER_NAME -u $USER_ID -G $USER_GROUPS > /dev/null 2>&1
 chpasswd <<< "$USER_NAME:$USER_PASS"
 chown $USER_NAME /home/$USER_NAME
 touch /home/$USER_NAME/.Xauthority; chown $USER_NAME /home/$USER_NAME/.Xauthority # gksu needs this file, even if empty
+chsh -s /bin/bash $USER_NAME
 
 # run command as user
 gosu $USER_NAME "$@"
