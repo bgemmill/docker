@@ -12,9 +12,10 @@ chpasswd <<< "$USER_NAME:$USER_PASS"
 chown $USER_NAME /home/$USER_NAME
 touch /home/$USER_NAME/.Xauthority; chown $USER_NAME /home/$USER_NAME/.Xauthority # gksu needs this file, even if empty
 chsh -s /bin/bash $USER_NAME
+cd /home/$USER_NAME
 
 # run command as user
-gosu $USER_NAME "$@"
+exec gosu $USER_NAME bash
 
 # run command as root
-#"$@"
+#exec bash

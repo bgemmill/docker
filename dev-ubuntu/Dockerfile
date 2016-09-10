@@ -5,7 +5,11 @@ MAINTAINER benjamin.gemmill@gmail.com
 
 RUN locale-gen en_US.UTF-8
 
+RUN apt-get update && apt-get install -y software-properties-common \
+      && add-apt-repository ppa:chazomaticus/minit
+
 RUN apt-get update && apt-get install -y \
+      minit \
       gksu \
       curl \
       vim gedit \
@@ -14,7 +18,6 @@ RUN apt-get update && apt-get install -y \
       python  python-dev  python-setuptools \
       python3 python3-dev python3-setuptools \
       cmake g++ g++-multilib
-      #&& rm -rf /var/lib/apt/lists/*
       
 # Java IDE
 RUN curl -L https://download.jetbrains.com/idea/ideaIC-2016.2.3.tar.gz | tar xz && mv idea* /opt/idea
@@ -33,11 +36,17 @@ RUN wget -O /usr/local/bin/gosu \
   "https://github.com/tianon/gosu/releases/download/1.9/gosu-$(dpkg --print-architecture | awk -F- '{ print $NF }')" \
   && chmod a+x /usr/local/bin/gosu
 
-COPY entrypoint.sh /usr/local/bin/entrypoint.sh
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+COPY startup /etc/minit/startup
+COPY shutdown /etc/minit/shutdown
+
+RUN apt-get purge -yq software-properties-common \
+  && apt-get autoremove -yq \
+  && apt-get autoclean -yq \
+  && rm -rf /var/lib/apt/lists/*
+
+ENTRYPOINT ["/sbin/minit"]
 
 # Start up the IDEs like this once you're in.
 #/opt/idea/bin/idea.sh > /dev/null 2>&1
 #/opt/pycharm/bin/pycharm.sh > /dev/null 2>&1
 #/opt/clion/bin/clion.sh > /dev/null 2>&1
-CMD bash
