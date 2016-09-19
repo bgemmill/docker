@@ -1,7 +1,5 @@
 #! /bin/bash
 
 # unmount
-#umount /mnt/acd-decrypted
-#fusermount -u /mnt/acd-decrypted
 fusermount -u /mnt/acd-raw
 echo "shutdown complete"
