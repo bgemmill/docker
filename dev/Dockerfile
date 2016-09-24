@@ -5,14 +5,15 @@ MAINTAINER benjamin.gemmill@gmail.com
 
 RUN locale-gen en_US.UTF-8
 
-RUN apt-get update && apt-get install -y software-properties-common \
+RUN apt-get update && apt-get install -y \
+      software-properties-common \
       && add-apt-repository ppa:chazomaticus/minit
 
 RUN apt-get update && apt-get install -y \
-      minit \
+      minit gosu \
       gksu \
       curl \
-      vim gedit \
+      vim less \
       git ssh rsync \
       default-jdk \
       python  python-dev  python-setuptools \
@@ -20,7 +21,7 @@ RUN apt-get update && apt-get install -y \
       cmake g++ g++-multilib
       
 # Java IDE
-RUN curl -L https://download.jetbrains.com/idea/ideaIC-2016.2.3.tar.gz | tar xz && mv idea* /opt/idea
+RUN curl -L https://download.jetbrains.com/idea/ideaIC-2016.2.4.tar.gz | tar xz && mv idea* /opt/idea
 
 # Python IDE
 RUN curl -L https://download.jetbrains.com/python/pycharm-community-2016.2.3.tar.gz | tar xz && mv pycharm* /opt/pycharm
@@ -30,11 +31,6 @@ RUN curl -L https://download.jetbrains.com/cpp/CLion-2016.2.2.tar.gz | tar xz &&
 
 ENV JAVA_HOME /usr/lib/jvm/default-java # to find the jdk
 ENV QT_X11_NO_MITSHM 1 # for qt to work over a shared x socket with the docker host
-
-#gosu
-RUN wget -O /usr/local/bin/gosu \
-  "https://github.com/tianon/gosu/releases/download/1.9/gosu-$(dpkg --print-architecture | awk -F- '{ print $NF }')" \
-  && chmod a+x /usr/local/bin/gosu
 
 COPY startup /etc/minit/startup
 COPY shutdown /etc/minit/shutdown

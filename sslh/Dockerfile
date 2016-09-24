@@ -5,10 +5,11 @@ MAINTAINER benjamin.gemmill@gmail.com
 
 RUN locale-gen en_US.UTF-8
 
-RUN apt-get update && apt-get install -y software-properties-common \
+RUN apt-get update && apt-get install -y \
+  software-properties-common \
   && add-apt-repository ppa:chazomaticus/minit
 
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
   minit \
   sslh iproute2
       
