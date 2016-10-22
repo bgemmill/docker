@@ -1,5 +1,0 @@
-#! /bin/bash
-
-# unmount
-fusermount -u /mnt/acd-raw
-echo "shutdown complete"

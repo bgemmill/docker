@@ -6,9 +6,10 @@ MAINTAINER benjamin.gemmill@gmail.com
 RUN locale-gen en_US.UTF-8
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -yq \
-      python3 python3-setuptools \
-      fuse \
-      ca-certificates curl git
+  vim less \
+  python3 python3-setuptools \
+  fuse \
+  ca-certificates curl git
 
 RUN easy_install3 -U pip \
   && pip3 install --upgrade git+https://github.com/bgemmill/acd_cli.git \
@@ -17,12 +18,13 @@ RUN easy_install3 -U pip \
 RUN curl -L https://github.com/borgbackup/borg/releases/download/1.0.7/borg-linux64 > /usr/bin/borg \
   && chmod a+x /usr/bin/borg
 
-COPY startup /etc/minit/startup
-COPY shutdown /etc/minit/shutdown
+COPY startup /usr/bin/startup
+COPY backup /usr/bin/backup
 
 RUN apt-get purge -yq software-properties-common ca-certificates curl git \
   && apt-get autoremove -yq \
   && apt-get autoclean -yq \
   && rm -rf /var/lib/apt/lists/*
 
-ENTRYPOINT ["/etc/minit/startup"]
+ENTRYPOINT ["/usr/bin/startup"]
+CMD bash

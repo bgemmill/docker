@@ -1,0 +1,7 @@
+#! /bin/bash
+
+echo "backing up"
+borg create --debug --ignore-inode -e /volume1/@docker -e /volume1/@tmp ::'diskstation-{now:%Y-%m-%d_%H:%M:%S}' /volume1
+echo "pruning"
+borg prune --debug --stats --list --prefix 'diskstation-' --keep-daily=7 --keep-weekly=4 --keep-monthly=6
+echo "done"

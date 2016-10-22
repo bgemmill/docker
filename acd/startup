@@ -2,20 +2,19 @@
 
 # make target directories
 mkdir -p /mnt/acd-raw
-mkdir -p /root/.cache/acd_cli
+mkdir -p /input/.cache/acd_cli
+mkdir -p /input/.cache/borg
+rm -r /root/.cache
+ln -s /input/.cache /root/.cache
 
 # mount amazon cloud drive
 cp /input/oauth_data /root/.cache/acd_cli/oauth_data
-acdcli old-sync
-#acdcli --no-log mount /mnt/acd-raw
+acdcli sync
 acdcli mount /mnt/acd-raw
 
 # borg backup
 export BORG_PASSPHRASE=`cat /input/borgbackup.secrets`
 export BORG_REPO=/mnt/acd-raw
 
-echo "backing up"
-time borg create --debug --ignore-inode -e /volume1/@docker -e /volume1/@tmp ::'diskstation-{now:%Y-%m-%d_%H:%M:%S}' /volume1 > ~/borg.log 2>&1
-echo "pruning"
-time borg prune -v --prefix 'diskstation-' --keep-daily=7 --keep-weekly=4 --keep-monthly=6 > ~/borg.prune.log 2>&1
-echo "done"
+# run CMD
+exec "$@"
