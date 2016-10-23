@@ -1,4 +1,0 @@
-#! /bin/bash
-
-fusermount -u /mnt/amazon
-acdcli mount /mnt/amazon

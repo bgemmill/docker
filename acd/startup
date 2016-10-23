@@ -2,6 +2,7 @@
 
 # make target directories
 mkdir -p /mnt/amazon
+mkdir -p /mnt/borg
 mkdir -p /input/.cache/acd_cli
 mkdir -p /input/.cache/borg
 rm -r /root/.cache
