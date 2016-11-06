@@ -7,11 +7,12 @@ RUN locale-gen en_US.UTF-8
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -yq \
   vim less \
-  python3 python3-pip \
+  python3 python3-setuptools \
   fuse \
   ca-certificates curl git
 
-RUN pip3 install --upgrade git+https://github.com/bgemmill/acd_cli.git \
+RUN easy_install3 -U pip \
+  && pip3 install --upgrade git+https://github.com/bgemmill/acd_cli.git \
   && mkdir -p /root/.cache/acd_cli
 
 RUN curl -L https://github.com/borgbackup/borg/releases/download/1.0.7/borg-linux64 > /usr/bin/borg \
