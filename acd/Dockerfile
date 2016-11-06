@@ -5,13 +5,13 @@ MAINTAINER benjamin.gemmill@gmail.com
 
 RUN locale-gen en_US.UTF-8
 
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -yq \
+RUN apt-get update && apt-get install -y \
   vim less \
-  python3 python3-setuptools \
+  python3 python3-pip \
   fuse \
   ca-certificates curl git
 
-RUN easy_install3 -U pip \
+RUN pip3 install -U pip setuptools \
   && pip3 install --upgrade git+https://github.com/bgemmill/acd_cli.git \
   && mkdir -p /root/.cache/acd_cli
 
