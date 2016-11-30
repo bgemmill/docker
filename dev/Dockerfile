@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
       && add-apt-repository ppa:chazomaticus/minit
 
 RUN apt-get update && apt-get install -y \
-      minit gosu \
+      minit gosu openssh-server \
       gksu \
       curl \
       vim less \
@@ -19,6 +19,10 @@ RUN apt-get update && apt-get install -y \
       python  python-dev  python-pip \
       python3 python3-dev python3-pip \
       cmake g++ g++-multilib
+
+# Optional (default off) ssh access for when we are not on a linux host and need graphics
+EXPOSE 22
+RUN mkdir -p /var/run/sshd
       
 # Python env
 RUN pip3 install -U pip setuptools \
