@@ -28,7 +28,9 @@ RUN pip3 install -U pip setuptools \
 RUN curl -L https://download.jetbrains.com/idea/ideaIC-2016.3.1-no-jdk.tar.gz | tar xz && mv idea* /opt/idea
 
 # Python IDE
-RUN curl -L https://download.jetbrains.com/python/pycharm-community-2016.3.1.tar.gz | tar xz && mv pycharm* /opt/pycharm
+RUN curl -L https://download.jetbrains.com/python/pycharm-community-2016.3.1.tar.gz | tar xz && mv pycharm* /opt/pycharm \
+      && "/usr/bin/python3.5" "/opt/pycharm/helpers/pydev/setup_cython.py" build_ext --inplace \
+      && "/usr/bin/python" "/opt/pycharm/helpers/pydev/setup_cython.py" build_ext --inplace
 
 # C++ IDE
 RUN curl -L https://download.jetbrains.com/cpp/CLion-2016.3.1.tar.gz | tar xz && mv clion* /opt/clion
