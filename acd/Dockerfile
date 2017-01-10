@@ -21,6 +21,7 @@ RUN curl -L https://github.com/borgbackup/borg/releases/download/1.0.9/borg-linu
 COPY startup /usr/bin/startup
 COPY backup /usr/bin/backup
 COPY inspect /usr/bin/inspect
+COPY repair /usr/bin/repair
 
 RUN apt-get purge -yq software-properties-common ca-certificates curl git \
   && apt-get autoremove -yq \
