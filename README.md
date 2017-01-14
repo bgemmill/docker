@@ -22,3 +22,8 @@ Why be strict about protocols and ports?
 Amazon Cloud Drive as an encrypted borg backup target
 
 When you want to back up all of your stuff and not show Amazon what it is. Note that you'll need to map in your encryption keys as /input/. Be sure to look at the example input directory for expected file names.
+
+# music
+Manipulate audio files
+
+Scanning, tagging, renaming, artworking, replaygain-ing goodness.
