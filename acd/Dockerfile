@@ -1,32 +1,46 @@
-# Amazon Cloud Drive as an encrypted borg backup target for diskstations
+# Amazon Cloud Drive as an encrypted target for rsync
+
+# Use like so: rsync user@ip::amazon/big.file .
+# where user is specified in your rsyncd.secrets, 
+# ip is printed by the container on startup
 
 FROM ubuntu:latest
 MAINTAINER benjamin.gemmill@gmail.com
 
 RUN locale-gen en_US.UTF-8
+ENV LANG='en_US.UTF-8' LC_ALL='en_US.UTF-8'
 
-RUN apt-get update && apt-get install -y \
-  vim less \
-  python3 python3-pip \
-  fuse \
-  ca-certificates curl git
+RUN apt-get update && apt-get install -y software-properties-common \
+  && add-apt-repository ppa:chazomaticus/minit
+
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -yq \
+      minit \
+      python3 python3-pip \
+      rsync \
+      fuse \
+      iproute2 \
+      ca-certificates curl git
 
 RUN pip3 install -U pip setuptools \
   && pip3 install --upgrade git+https://github.com/bgemmill/acd_cli.git \
   && mkdir -p /root/.cache/acd_cli
 
-RUN curl -L https://github.com/borgbackup/borg/releases/download/1.0.9/borg-linux64 > /usr/bin/borg \
-  && chmod a+x /usr/bin/borg
+RUN curl -L https://github.com/rfjakob/gocryptfs/releases/download/v1.2/gocryptfs_v1.2_debian8_amd64.tar.gz | tar xz \
+  && mv gocryptfs /usr/local/bin/
 
-COPY startup /usr/bin/startup
-COPY backup /usr/bin/backup
-COPY inspect /usr/bin/inspect
-COPY repair /usr/bin/repair
+EXPOSE 873
 
-RUN apt-get purge -yq software-properties-common ca-certificates curl git \
-  && apt-get autoremove -yq \
-  && apt-get autoclean -yq \
-  && rm -rf /var/lib/apt/lists/*
+COPY rsyncd.conf /root/rsyncd.conf
+COPY remount.sh /root/remount.sh
+COPY unmount.sh /root/unmount.sh
+COPY mount.sh /root/mount.sh
 
-ENTRYPOINT ["/usr/bin/startup"]
-CMD bash
+COPY startup /etc/minit/startup
+COPY shutdown /etc/minit/shutdown
+
+#RUN apt-get purge -yq software-properties-common ca-certificates curl git \
+#  && apt-get autoremove -yq \
+#  && apt-get autoclean -yq \
+#  && rm -rf /var/lib/apt/lists/*
+
+ENTRYPOINT ["/sbin/minit"]

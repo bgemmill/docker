@@ -1,5 +1,0 @@
-#! /bin/bash
-
-echo "repairing"
-echo "YES" | borg check --repair > ~/.cache/borg-check.log
-echo "done"

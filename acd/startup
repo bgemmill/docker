@@ -2,20 +2,20 @@
 
 # make target directories
 mkdir -p /mnt/amazon
-mkdir -p /mnt/borg
+mkdir -p /mnt/decrypted
 mkdir -p /input/.cache/acd_cli
-mkdir -p /input/.cache/borg
 rm -r /root/.cache
 ln -s /input/.cache /root/.cache
 
 # mount amazon cloud drive
 cp /input/oauth_data /root/.cache/acd_cli/oauth_data
-acdcli sync
-acdcli mount /mnt/amazon
 
-# borg backup
-export BORG_PASSPHRASE=`cat /input/borgbackup.secrets`
-export BORG_REPO=/mnt/amazon
+/root/mount.sh
 
-# run CMD
-exec "$@"
+# show what our local ip is so other services can rsync here
+ip -o addr show eth0 | awk /'inet/ {print $2 "\t" $3 "\t" $4}'
+
+# rsyncd
+cp /input/rsyncd.secrets /root/rsyncd.secrets && chmod a-r /root/rsyncd.secrets
+/usr/bin/rsync --no-detach --daemon --config="/root/rsyncd.conf" &
+echo "startup complete"

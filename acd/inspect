@@ -1,5 +1,0 @@
-#! /bin/bash
-
-borg mount ::`borg list --short | tail -n1` /mnt/borg
-cd /mnt/borg
-bash
