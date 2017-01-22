@@ -3,7 +3,7 @@
 # add a user to run commands with
 USER_NAME=${USER_NAME:=docker}
 USER_PASS=${USER_PASS:=docker}
-USER_GROUPS=${USER_GROUPS:=audio,sudo}
+USER_GROUPS=${USER_GROUPS:=audio,sudo,cdrom}
 USER_ID=${USER_ID:=1000}
 
 # create that user

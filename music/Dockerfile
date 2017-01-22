@@ -18,13 +18,14 @@ RUN apt-get update && apt-get install -y \
       vim less \
       git ssh rsync \
       picard libchromaprint-tools \
-      python-rgain vorbisgain flac wavpack
+      python-rgain vorbisgain flac wavpack \
+      rhythmbox rhythmbox-plugin-cdrecorder
 #bs1770gain - mp3gain replacement since python-rgain is not being maintained as of 2017-01-10
 
 RUN mkdir -p /usr/lib/picard/contrib/plugins
 
 COPY Picard.conf /home/docker/.config/MusicBrainz/Picard.conf 
-RUN chmod a+rw /home/docker/.config/MusicBrainz
+RUN chmod -R a+rw /home/docker/.config
 
 COPY startup /etc/minit/startup
 COPY shutdown /etc/minit/shutdown
