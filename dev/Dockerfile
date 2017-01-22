@@ -27,15 +27,15 @@ RUN pip3 install -U pip setuptools \
   && pip install -U pip setuptools
 
 # Java IDE
-RUN curl -L https://download.jetbrains.com/idea/ideaIC-2016.3.1-no-jdk.tar.gz | tar xz && mv idea* /opt/idea
+RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linuxWithoutJDK&code=IIC" | tar xz && mv idea* /opt/idea
 
 # Python IDE
-RUN curl -L https://download.jetbrains.com/python/pycharm-community-2016.3.1.tar.gz | tar xz && mv pycharm* /opt/pycharm \
+RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linux&code=PCC" | tar xz && mv pycharm* /opt/pycharm \
       && "/usr/bin/python3.5" "/opt/pycharm/helpers/pydev/setup_cython.py" build_ext --inplace \
       && "/usr/bin/python" "/opt/pycharm/helpers/pydev/setup_cython.py" build_ext --inplace
 
 # C++ IDE
-RUN curl -L https://download.jetbrains.com/cpp/CLion-2016.3.1.tar.gz | tar xz && mv clion* /opt/clion
+RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linux&code=CL" | tar xz && mv clion* /opt/clion
 
 ENV JAVA_HOME /usr/lib/jvm/default-java # to find the jdk
 ENV QT_X11_NO_MITSHM 1 # for qt to work over a shared x socket with the docker host
