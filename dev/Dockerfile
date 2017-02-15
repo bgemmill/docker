@@ -28,10 +28,10 @@ RUN pip3 install -U pip setuptools \
   && pip install -U pip setuptools
 
 # Java IDE
-RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linuxWithoutJDK&code=IIC" | tar xz && mv idea* /opt/idea
+RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linuxWithoutJDK&code=IIU" | tar xz && mv idea* /opt/idea
 
 # Python IDE
-RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linux&code=PCC" | tar xz && mv pycharm* /opt/pycharm \
+RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linux&code=PCP" | tar xz && mv pycharm* /opt/pycharm \
       && "/usr/bin/python3.5" "/opt/pycharm/helpers/pydev/setup_cython.py" build_ext --inplace \
       && "/usr/bin/python" "/opt/pycharm/helpers/pydev/setup_cython.py" build_ext --inplace
 
