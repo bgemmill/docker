@@ -9,34 +9,35 @@ ENV LANG='en_US.UTF-8' LC_ALL='en_US.UTF-8'
 RUN apt-get update && apt-get install -y \
       software-properties-common \
       && add-apt-repository ppa:chazomaticus/minit \
+      && add-apt-repository ppa:ubuntu-desktop/ubuntu-make \
       && add-apt-repository universe
 
 RUN apt-get update && apt-get install -y \
       minit gosu \
       gksu \
-      curl \
       vim less \
-      git ssh rsync \
+      git ssh rsync fuse \
       default-jdk \
       python  python-dev  python-pip \
       python3 python3-dev python3-pip \
+      llvm libz-dev \
       cmake g++ g++-multilib \
-      llvm libz-dev
+      ubuntu-make
       
 # Python env
 RUN pip3 install -U pip setuptools \
   && pip install -U pip setuptools
 
 # Java IDE
-RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linuxWithoutJDK&code=IIC" | tar xz && mv idea* /opt/idea
+RUN echo "/opt/idea" | umake ide idea
 
 # Python IDE
-RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linux&code=PCC" | tar xz && mv pycharm* /opt/pycharm \
+RUN echo "/opt/pycharm" | umake ide pycharm \
       && "/usr/bin/python3.5" "/opt/pycharm/helpers/pydev/setup_cython.py" build_ext --inplace \
       && "/usr/bin/python" "/opt/pycharm/helpers/pydev/setup_cython.py" build_ext --inplace
 
 # C++ IDE
-RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linux&code=CL" | tar xz && mv clion* /opt/clion
+RUN echo "/opt/clion" | umake ide clion
 
 ENV JAVA_HOME /usr/lib/jvm/default-java # to find the jdk
 ENV QT_X11_NO_MITSHM 1 # for qt to work over a shared x socket with the docker host
