@@ -39,6 +39,10 @@ RUN echo "/opt/pycharm" | umake ide pycharm \
 # C++ IDE
 RUN echo "/opt/clion" | umake ide clion
 
+# SQL IDE
+RUN curl -L "http://dbeaver.jkiss.org/files/dbeaver-ce-latest-linux.gtk.x86_64.tar.gz" | tar xz \
+  && mv dbeaver /opt/dbeaver && chmod a+x /opt/dbeaver/dbeaver
+
 ENV JAVA_HOME /usr/lib/jvm/default-java # to find the jdk
 ENV QT_X11_NO_MITSHM 1 # for qt to work over a shared x socket with the docker host
 
@@ -56,3 +60,4 @@ ENTRYPOINT ["/sbin/minit"]
 #/opt/idea/bin/idea.sh > /dev/null 2>&1
 #/opt/pycharm/bin/pycharm.sh > /dev/null 2>&1
 #/opt/clion/bin/clion.sh > /dev/null 2>&1
+#/opt/dbeaver/dbeaver > /dev/null 2>&1
