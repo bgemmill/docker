@@ -25,7 +25,7 @@ RUN pip3 install -U pip setuptools \
   && pip3 install --upgrade git+https://github.com/bgemmill/acd_cli.git \
   && mkdir -p /root/.cache/acd_cli
 
-RUN curl -L https://github.com/rfjakob/gocryptfs/releases/download/v1.2/gocryptfs_v1.2_debian8_amd64.tar.gz | tar xz \
+RUN curl -L https://github.com/rfjakob/gocryptfs/releases/download/v1.2.1/gocryptfs_v1.2.1_debian8_amd64.tar.gz | tar xz \
   && mv gocryptfs /usr/local/bin/
 
 EXPOSE 873
