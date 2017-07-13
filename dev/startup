@@ -15,7 +15,7 @@ chsh -s /bin/bash $USER_NAME
 cd /home/$USER_NAME
 
 # run command as user
-exec gosu $USER_NAME bash
+USER=$USER_NAME LOGNAME=$USER_NAME exec gosu $USER_NAME bash
 
 # run command as root
 #exec bash
