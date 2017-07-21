@@ -16,11 +16,11 @@ RUN apt-get update && apt-get install -y \
       minit gosu \
       gksu \
       vim less \
-      git ssh rsync curl fuse \
+      git ssh rsync curl \
       default-jdk \
       python  python-dev  python-pip \
       python3 python3-dev python3-pip \
-      llvm libz-dev \
+      llvm libz-dev libssl-dev \
       cmake g++ g++-multilib gdb \
       ubuntu-make
       
