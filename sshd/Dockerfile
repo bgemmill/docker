@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get update && apt-get install -y \
   minit \
   openssh-server \
-  vim less \
+  vim less iputils-ping \
   rsync
 
 RUN mkdir /var/run/sshd
