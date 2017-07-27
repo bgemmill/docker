@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get update && apt-get install -y \
       minit gosu \
       gksu \
-      vim less \
+      vim less iputils-ping \
       git ssh rsync curl \
       default-jdk \
       python  python-dev  python-pip \
