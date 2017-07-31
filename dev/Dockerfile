@@ -25,15 +25,15 @@ RUN apt-get update && apt-get install -y \
       ubuntu-make
       
 # Python env
-RUN pip3 install -U pip setuptools \
-  && pip install -U pip setuptools
+RUN pip3 install -U pip setuptools
+RUN pip install -U pip setuptools
 
 # Java IDE
 RUN echo "/opt/idea" | umake ide idea
 
 # Python IDE
 RUN echo "/opt/pycharm" | umake ide pycharm \
-      && "/usr/bin/python3.5" "/opt/pycharm/helpers/pydev/setup_cython.py" build_ext --inplace \
+      && "/usr/bin/python3" "/opt/pycharm/helpers/pydev/setup_cython.py" build_ext --inplace \
       && "/usr/bin/python" "/opt/pycharm/helpers/pydev/setup_cython.py" build_ext --inplace
 
 # C++ IDE
