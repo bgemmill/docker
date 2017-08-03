@@ -25,8 +25,8 @@ RUN apt-get update && apt-get install -y \
       ubuntu-make
       
 # Python env
-RUN pip3 install -U pip setuptools
-RUN pip install -U pip setuptools
+#RUN pip3 install -U pip setuptools
+#RUN pip install -U pip setuptools
 
 # Java IDE
 RUN echo "/opt/idea" | umake ide idea
