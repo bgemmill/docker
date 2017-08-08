@@ -15,12 +15,13 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get update && apt-get install -y \
       minit gosu \
       gksu \
-      vim less iputils-ping \
+      vim less \
+      iputils-ping lsof \
       git ssh rsync curl \
       default-jdk \
       python  python-dev  python-pip \
       python3 python3-dev python3-pip \
-      llvm libz-dev libssl-dev \
+      llvm libz-dev \
       cmake g++ g++-multilib gdb \
       ubuntu-make
       
