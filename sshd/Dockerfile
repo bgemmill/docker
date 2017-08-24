@@ -7,10 +7,6 @@ RUN apt-get update && apt-get install -y locales && locale-gen en_US.UTF-8
 ENV LANG='en_US.UTF-8' LC_ALL='en_US.UTF-8'
 
 RUN apt-get update && apt-get install -y \
-  software-properties-common \
-  && add-apt-repository ppa:chazomaticus/minit
-
-RUN apt-get update && apt-get install -y \
   minit \
   openssh-server \
   vim less iputils-ping \
@@ -26,12 +22,9 @@ RUN sed 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd
 
 EXPOSE 22
 
-COPY startup /etc/minit/startup
-COPY shutdown /etc/minit/shutdown
-
 RUN apt-get purge -yq software-properties-common \
   && apt-get autoremove -yq \
   && apt-get autoclean -yq \
   && rm -rf /var/lib/apt/lists/*
 
-ENTRYPOINT ["/sbin/minit"]
+CMD ["/usr/sbin/sshd"]
