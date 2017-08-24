@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN apt-get update && apt-get install -y \
       gksu \
-      vim less \
+      vim less bash-completion \
       iputils-ping lsof \
       git ssh rsync curl \
       default-jdk \
