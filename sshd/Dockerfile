@@ -26,4 +26,4 @@ RUN apt-get purge -yq software-properties-common \
   && apt-get autoclean -yq \
   && rm -rf /var/lib/apt/lists/*
 
-CMD ["/usr/sbin/sshd"]
+CMD ["/usr/sbin/sshd", "-D"]
