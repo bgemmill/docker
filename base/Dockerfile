@@ -11,7 +11,7 @@ RUN sed -i 's/^#\s*\(deb.*universe\)$/\1/g' /etc/apt/sources.list
 RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list
 
 RUN apt-get update && apt-get install -y \
-      gosu 
+  gosu
 
 COPY startup /etc/init/startup
 

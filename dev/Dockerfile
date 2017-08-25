@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y \
       && add-apt-repository ppa:ubuntu-desktop/ubuntu-make \
 
 RUN apt-get update && apt-get install -y \
-      gksu \
+      sudo gksu \
       vim less \
       iputils-ping lsof \
       git ssh rsync curl \
