@@ -7,7 +7,6 @@ RUN apt-get update && apt-get install -y locales && locale-gen en_US.UTF-8
 ENV LANG='en_US.UTF-8' LC_ALL='en_US.UTF-8'
 
 RUN apt-get update && apt-get install -y \
-  minit \
   openssh-server \
   vim less iputils-ping \
   rsync
@@ -27,4 +26,4 @@ RUN apt-get purge -yq software-properties-common \
   && apt-get autoclean -yq \
   && rm -rf /var/lib/apt/lists/*
 
-CMD ["/usr/sbin/sshd"]
+CMD ["/usr/sbin/sshd", "-D"]

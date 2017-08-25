@@ -5,11 +5,11 @@ MAINTAINER benjamin.gemmill@gmail.com
 
 RUN apt-get update && apt-get install -y \
       software-properties-common \
-      && add-apt-repository ppa:ubuntu-desktop/ubuntu-make \
+      && add-apt-repository ppa:ubuntu-desktop/ubuntu-make
 
 RUN apt-get update && apt-get install -y \
       sudo gksu \
-      vim less \
+      vim less bash-completion \
       iputils-ping lsof \
       git ssh rsync curl \
       default-jdk \
