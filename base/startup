@@ -8,15 +8,17 @@ if [ -f /root/.docker-runrc ]; then
   USER_GROUPS=`cut -d : -f 3 /root/.docker-runrc`
   USER_ID=`cut -d : -f 1     /root/.docker-runrc`
 else
-  USER_NAME=${USER_NAME:=docker}
-  USER_PASS=${USER_PASS:=docker}
-  USER_GROUPS=${USER_GROUPS:=audio,sudo}
-  USER_ID=${USER_ID:=1000}
+  echo "WARNING: .docker-runrc not found; user password is well known"
+  USER_NAME=docker
+  USER_PASS=`perl -e 'print crypt(docker,"\\$6\\$saltsalt\\$") . "\n"'`
+  USER_GROUPS=audio #no sudo if password is well known
+  USER_ID=1000
 fi
 
 # create that user
 useradd -m $USER_NAME -u $USER_ID -G $USER_GROUPS > /dev/null 2>&1
-chpasswd <<< "$USER_NAME:$USER_PASS"
+#chpasswd <<< "$USER_NAME:$USER_PASS"
+awk "{gsub(/${USER_NAME}:.:/,\"${USER_NAME}:${USER_PASS}:\")}1" /etc/shadow > temp.file && cat temp.file > /etc/shadow && rm temp.file
 chown $USER_NAME /home/$USER_NAME
 touch /home/$USER_NAME/.Xauthority; chown $USER_NAME /home/$USER_NAME/.Xauthority # gksu needs this file, even if empty
 chsh -s /bin/bash $USER_NAME
