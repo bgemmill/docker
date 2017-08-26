@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
       sudo gksu \
       vim less bash-completion \
       iputils-ping lsof \
-      git ssh rsync curl \
+      git openssh-client rsync curl \
       default-jdk \
       python  python-dev  python-pip \
       python3 python3-dev python3-pip \
