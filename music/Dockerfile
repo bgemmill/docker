@@ -11,9 +11,11 @@ RUN apt-get update && apt-get install -y \
       gksu \
       vim less \
       picard libchromaprint-tools \
-      python-rgain vorbisgain flac wavpack \
-      rhythmbox rhythmbox-plugin-cdrecorder
-#bs1770gain - mp3gain replacement since python-rgain is not being maintained as of 2017-01-10
+      python-rgain vorbisgain flac wavpack
+#rhythmbox rhythmbox-plugin-cdrecorder - ripping CDs
+#bs1770gain - mp3gain replacement but takes different commands
+#mp3gain - abandonware
+#python-rgain - abandonware as of 2017-01-10 but still works on command line
 
 RUN mkdir -p /usr/lib/picard/contrib/plugins
 
