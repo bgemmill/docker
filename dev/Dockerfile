@@ -19,6 +19,11 @@ RUN apt-get update && apt-get install -y \
       cmake g++ g++-multilib gdb \
       ubuntu-make
       
+# Git
+RUN git config --global credential.helper "cache --timeout=3600" \
+      && git config --global push.default simple \
+      && git config --global core.editor "vim"
+
 # Java IDE
 RUN echo "/opt/idea" | umake ide idea
 
