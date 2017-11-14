@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y \
       python  python-dev  python-pip \
       python3 python3-dev python3-pip \
       llvm libz-dev \
-      cmake g++ g++-multilib gdb \
+      cmake g++ g++-multilib gdb ccache \
       ubuntu-make
       
 # Git
