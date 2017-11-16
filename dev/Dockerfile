@@ -39,8 +39,11 @@ RUN echo "/opt/clion" | umake ide clion
 RUN curl -L "http://dbeaver.jkiss.org/files/dbeaver-ce-latest-linux.gtk.x86_64.tar.gz" | tar xz \
   && mv dbeaver /opt/dbeaver && chmod a+x /opt/dbeaver/dbeaver
 
-ENV JAVA_HOME /usr/lib/jvm/default-java # to find the jdk
-#ENV QT_X11_NO_MITSHM 1 # for qt to work over a shared x socket with the docker host
+# JDK
+ENV JAVA_HOME /usr/lib/jvm/default-java
+
+# QT possibly needed to work over a shared x socket with the docker host
+#ENV QT_X11_NO_MITSHM 1 
 
 # Start up the IDEs like this once you're in.
 #/opt/idea/bin/idea.sh > /dev/null 2>&1
