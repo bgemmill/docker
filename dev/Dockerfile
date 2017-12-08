@@ -15,8 +15,8 @@ RUN apt-get update && apt-get install -y \
       default-jdk \
       python  python-dev  python-pip \
       python3 python3-dev python3-pip \
-      llvm libz-dev \
-      cmake g++ g++-multilib gdb ccache \
+      llvm libz-dev libssl-dev \
+      cmake g++ gdb ccache \
       ubuntu-make
       
 # Git
