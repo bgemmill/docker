@@ -30,10 +30,12 @@ RUN echo "/opt/idea" | umake ide idea
 # Python IDE
 RUN echo "/opt/pycharm" | umake ide pycharm \
       && "/usr/bin/python3" "/opt/pycharm/helpers/pydev/setup_cython.py" build_ext --inplace \
-      && "/usr/bin/python" "/opt/pycharm/helpers/pydev/setup_cython.py" build_ext --inplace
+      && "/usr/bin/python"  "/opt/pycharm/helpers/pydev/setup_cython.py" build_ext --inplace
 
 # C++ IDE
-RUN echo "/opt/clion" | umake ide clion
+RUN echo "/opt/clion" | umake ide clion \
+      && "/usr/bin/python3" "/opt/clion/plugins/python/helpers/pydev/setup_cython.py" build_ext --inplace \
+      && "/usr/bin/python"  "/opt/clion/plugins/python/helpers/pydev/setup_cython.py" build_ext --inplace
 
 # SQL IDE
 RUN curl -L "http://dbeaver.jkiss.org/files/dbeaver-ce-latest-linux.gtk.x86_64.tar.gz" | tar xz \
