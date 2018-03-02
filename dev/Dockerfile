@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y \
       python3 python3-dev python3-pip \
       libz-dev libssl-dev \
       clang-5.0 lldb-5.0 lld-5.0 \
-      cmake make \
+      cmake make ccache\
       ubuntu-make
 
 # Git
@@ -34,8 +34,13 @@ ENV JAVA_HOME /usr/lib/jvm/default-java
 RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-5.0 1000 \
   && update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-5.0 1000 \
   && update-alternatives --install /usr/bin/lldb lldb /usr/bin/lldb-5.0 1000
-ENV CC=/usr/bin/clang
-ENV CXX=/usr/bin/clang++
+#ENV CC=/usr/bin/clang
+#ENV CXX=/usr/bin/clang++
+
+#ccache
+ENV CC=/usr/lib/ccache/clang
+ENV CXX=/usr/lib/ccache/clang++
+ENV CCACHE_SLOPPINESS=pch_defines,time_macros
 
 # Java IDE
 RUN echo "/opt/idea" | umake ide idea
