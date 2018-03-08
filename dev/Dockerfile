@@ -3,11 +3,12 @@
 FROM project5/base
 MAINTAINER benjamin.gemmill@gmail.com
 
+# clang repository from https://apt.llvm.org
 RUN apt-get update && apt-get install -y \
       software-properties-common curl \
       && add-apt-repository ppa:ubuntu-desktop/ubuntu-make \
       && curl https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - \
-      && apt-add-repository "deb http://apt.llvm.org/`lsb_release -cs`/ llvm-toolchain-`lsb_release -cs`-5.0 main"
+      && apt-add-repository "deb http://apt.llvm.org/`lsb_release -cs`/ llvm-toolchain-`lsb_release -cs`-6.0 main"
 
 RUN apt-get update && apt-get install -y \
       sudo gksu \
@@ -18,7 +19,7 @@ RUN apt-get update && apt-get install -y \
       python  python-dev python-pip \
       python3 python3-dev python3-pip \
       libz-dev libssl-dev \
-      clang-5.0 lldb-5.0 lld-5.0 \
+      clang-6.0 lldb-6.0 lld-6.0 \
       cmake make ccache \
       ubuntu-make
 
@@ -31,14 +32,15 @@ RUN git config --global credential.helper "cache --timeout=3600" \
 ENV JAVA_HOME /usr/lib/jvm/default-java
 
 # clang
-RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-5.0 1000 \
-  && update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-5.0 1000 \
-  && update-alternatives --install /usr/bin/lldb lldb /usr/bin/lldb-5.0 1000
+RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-6.0 1000 \
+  && update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-6.0 1000 \
+  && update-alternatives --install /usr/bin/lldb lldb /usr/bin/lldb-6.0 1000
 ENV CC=/usr/bin/clang
 ENV CXX=/usr/bin/clang++
 
 # ccache
-#The forarding binaries live here: /usr/lib/ccache/clang
+# passthrough compiler links are here:/usr/lib/ccache/
+# sloppiness recommended by the cmake cotire project for precompiled headers
 ENV CCACHE_SLOPPINESS=pch_defines,time_macros
 
 # Java IDE
@@ -57,9 +59,6 @@ RUN echo "/opt/clion" | umake ide clion \
 # SQL IDE
 RUN curl -L "http://dbeaver.jkiss.org/files/dbeaver-ce-latest-linux.gtk.x86_64.tar.gz" | tar xz \
   && mv dbeaver /opt/dbeaver && chmod a+x /opt/dbeaver/dbeaver
-
-# QT possibly needed to work over a shared x socket with the docker host
-#ENV QT_X11_NO_MITSHM 1 
 
 # Start up the IDEs like this once you're in.
 #/opt/idea/bin/idea.sh > /dev/null 2>&1
