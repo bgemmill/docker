@@ -38,11 +38,6 @@ RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-6.0 1000 \
 ENV CC=/usr/bin/clang
 ENV CXX=/usr/bin/clang++
 
-# ccache
-# passthrough compiler links are here:/usr/lib/ccache/
-# sloppiness recommended by the cmake cotire project for precompiled headers
-ENV CCACHE_SLOPPINESS=pch_defines,time_macros
-
 # Java IDE
 RUN echo "/opt/idea" | umake ide idea
 
