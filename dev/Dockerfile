@@ -18,10 +18,14 @@ RUN apt-get update && apt-get install -y \
       default-jdk \
       python  python-dev python-pip \
       python3 python3-dev python3-pip \
-      libz-dev libssl-dev \
       clang-6.0 lldb-6.0 lld-6.0 \
       cmake make ccache \
       ubuntu-make
+
+RUN apt-get update && apt-get install -y \
+      libssl-dev \
+      flex bison ant \
+      autoconf automake libtool libunwind-dev
 
 # Git
 RUN git config --global credential.helper "cache --timeout=3600" \
@@ -39,21 +43,25 @@ ENV CC=/usr/bin/clang
 ENV CXX=/usr/bin/clang++
 
 # Java IDE
-RUN echo "/opt/idea" | umake ide idea
+RUN echo "/opt/idea" | umake ide idea \
+      && chmod -R a+w /opt/idea
 
 # Python IDE
 RUN echo "/opt/pycharm" | umake ide pycharm \
       && "/usr/bin/python3" "/opt/pycharm/helpers/pydev/setup_cython.py" build_ext --inplace \
-      && "/usr/bin/python"  "/opt/pycharm/helpers/pydev/setup_cython.py" build_ext --inplace
+      && "/usr/bin/python"  "/opt/pycharm/helpers/pydev/setup_cython.py" build_ext --inplace \
+      && chmod -R a+w /opt/pycharm
 
 # C++ IDE
 RUN echo "/opt/clion" | umake ide clion \
       && "/usr/bin/python3" "/opt/clion/plugins/python/helpers/pydev/setup_cython.py" build_ext --inplace \
-      && "/usr/bin/python"  "/opt/clion/plugins/python/helpers/pydev/setup_cython.py" build_ext --inplace
+      && "/usr/bin/python"  "/opt/clion/plugins/python/helpers/pydev/setup_cython.py" build_ext --inplace \
+      && chmod -R a+w /opt/clion
 
 # SQL IDE
 RUN curl -L "http://dbeaver.jkiss.org/files/dbeaver-ce-latest-linux.gtk.x86_64.tar.gz" | tar xz \
-  && mv dbeaver /opt/dbeaver && chmod a+x /opt/dbeaver/dbeaver
+      && mv dbeaver /opt/dbeaver && chmod a+x /opt/dbeaver/dbeaver \
+      && chmod -R a+w /opt/dbeaver
 
 # Start up the IDEs like this once you're in.
 #/opt/idea/bin/idea.sh > /dev/null 2>&1
