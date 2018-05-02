@@ -19,7 +19,6 @@ RUN apt-get update && apt-get install -y \
       python3 python3-dev python3-pip \
       clang-6.0 lldb-6.0 lld-6.0 \
       cmake make ccache \
-      ubuntu-make \
       # boost
       libssl-dev libz-dev \
       # thrift
@@ -43,17 +42,17 @@ ENV CC=/usr/bin/clang
 ENV CXX=/usr/bin/clang++
 
 # Java IDE
-RUN echo "/opt/idea" | umake ide idea \
+RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linuxWithoutJDK&code=IIC" | tar xz && mv idea* /opt/idea \
       && chmod -R a+w /opt/idea
 
 # Python IDE
-RUN echo "/opt/pycharm" | umake ide pycharm \
+RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linux&code=PCC" | tar xz && mv pycharm* /opt/pycharm \
       && "/usr/bin/python3" "/opt/pycharm/helpers/pydev/setup_cython.py" build_ext --inplace \
       #&& "/usr/bin/python"  "/opt/pycharm/helpers/pydev/setup_cython.py" build_ext --inplace \
       && chmod -R a+w /opt/pycharm
 
 # C++ IDE
-RUN echo "/opt/clion" | umake ide clion \
+RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linux&code=CL" | tar xz && mv clion* /opt/clion \
       && "/usr/bin/python3" "/opt/clion/plugins/python/helpers/pydev/setup_cython.py" build_ext --inplace \
       #&& "/usr/bin/python"  "/opt/clion/plugins/python/helpers/pydev/setup_cython.py" build_ext --inplace \
       && chmod -R a+w /opt/clion
