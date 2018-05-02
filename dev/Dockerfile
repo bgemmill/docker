@@ -6,12 +6,11 @@ MAINTAINER benjamin.gemmill@gmail.com
 # clang repository from https://apt.llvm.org
 RUN apt-get update && apt-get install -y \
       software-properties-common curl \
-      && add-apt-repository ppa:ubuntu-desktop/ubuntu-make \
       && curl https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - \
       && apt-add-repository "deb http://apt.llvm.org/`lsb_release -cs`/ llvm-toolchain-`lsb_release -cs`-6.0 main"
 
 RUN apt-get update && apt-get install -y \
-      sudo gksu \
+      sudo \
       vim less bash-completion \
       iputils-ping lsof \
       git openssh-client rsync curl \
