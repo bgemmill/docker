@@ -15,15 +15,16 @@ RUN apt-get update && apt-get install -y \
       iputils-ping lsof \
       git openssh-client rsync curl \
       default-jdk \
-      python  python-dev python-pip \
+      #python python-dev python-pip \
       python3 python3-dev python3-pip \
       clang-6.0 lldb-6.0 lld-6.0 \
       cmake make ccache \
-      ubuntu-make
-
-RUN apt-get update && apt-get install -y \
-      libssl-dev \
-      flex bison ant \
+      ubuntu-make \
+      # boost
+      libssl-dev libz-dev \
+      # thrift
+      flex bison \
+      # google-perftools
       autoconf automake libtool libunwind-dev
 
 # Git
@@ -48,13 +49,13 @@ RUN echo "/opt/idea" | umake ide idea \
 # Python IDE
 RUN echo "/opt/pycharm" | umake ide pycharm \
       && "/usr/bin/python3" "/opt/pycharm/helpers/pydev/setup_cython.py" build_ext --inplace \
-      && "/usr/bin/python"  "/opt/pycharm/helpers/pydev/setup_cython.py" build_ext --inplace \
+      #&& "/usr/bin/python"  "/opt/pycharm/helpers/pydev/setup_cython.py" build_ext --inplace \
       && chmod -R a+w /opt/pycharm
 
 # C++ IDE
 RUN echo "/opt/clion" | umake ide clion \
       && "/usr/bin/python3" "/opt/clion/plugins/python/helpers/pydev/setup_cython.py" build_ext --inplace \
-      && "/usr/bin/python"  "/opt/clion/plugins/python/helpers/pydev/setup_cython.py" build_ext --inplace \
+      #&& "/usr/bin/python"  "/opt/clion/plugins/python/helpers/pydev/setup_cython.py" build_ext --inplace \
       && chmod -R a+w /opt/clion
 
 # SQL IDE
