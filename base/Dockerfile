@@ -1,6 +1,6 @@
 # An interactive base image that runs commands as users rather than root
 
-FROM ubuntu:latest
+FROM ubuntu:16.04
 MAINTAINER benjamin.gemmill@gmail.com
 
 RUN apt-get update && apt-get install -y locales && locale-gen en_US.UTF-8
