@@ -32,7 +32,8 @@ RUN git config --global credential.helper "cache --timeout=3600" \
       && git config --global core.editor "vim"
 
 # JDK
-ENV JAVA_HOME /usr/lib/jvm/default-java
+# apt install default-jdk needs: ENV JAVA_HOME /usr/lib/jvm/default-java
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 
 # clang
 RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-6.0 1000 \
