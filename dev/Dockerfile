@@ -19,12 +19,7 @@ RUN apt-get update && apt-get install -y \
       python3 python3-dev python3-pip \
       clang-6.0 lldb-6.0 lld-6.0 \
       cmake make ccache \
-      # boost
-      libssl-dev libz-dev \
-      # thrift
-      flex bison \
-      # google-perftools
-      autoconf automake libtool libunwind-dev
+      libssl-dev libz-dev
 
 # Git
 RUN git config --global credential.helper "cache --timeout=3600" \
@@ -35,7 +30,7 @@ RUN git config --global credential.helper "cache --timeout=3600" \
 #ENV JAVA_HOME /usr/lib/jvm/default-java
 #ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 
-# clang
+# Clang
 RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-6.0 1000 \
   && update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-6.0 1000 \
   && update-alternatives --install /usr/bin/lldb lldb /usr/bin/lldb-6.0 1000
