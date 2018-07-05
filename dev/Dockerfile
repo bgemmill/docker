@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
       vim less bash-completion \
       iputils-ping lsof \
       git openssh-client rsync curl \
-      openjdk-8-jdk gradle \
+      default-jdk gradle \
       python python-dev python-pip \
       python3 python3-dev python3-pip \
       clang-6.0 lldb-6.0 lld-6.0 \
@@ -32,8 +32,8 @@ RUN git config --global credential.helper "cache --timeout=3600" \
       && git config --global core.editor "vim"
 
 # JDK
-# apt install default-jdk needs: ENV JAVA_HOME /usr/lib/jvm/default-java
-ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
+#ENV JAVA_HOME /usr/lib/jvm/default-java
+#ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 
 # clang
 RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-6.0 1000 \
@@ -43,7 +43,8 @@ ENV CC=/usr/bin/clang
 ENV CXX=/usr/bin/clang++
 
 # Java IDE
-RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linuxWithoutJDK&code=IIC" | tar xz && mv idea* /opt/idea \
+#platform=linuxWithoutJDK uses the system jdk for idea itself
+RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linux&code=IIC" | tar xz && mv idea* /opt/idea \
       && chmod -R a+w /opt/idea
 
 # Python IDE
