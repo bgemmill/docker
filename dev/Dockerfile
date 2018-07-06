@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
       vim less bash-completion \
       iputils-ping lsof \
       git openssh-client rsync curl \
-      default-jdk \
+      default-jdk gradle \
       python python-dev python-pip \
       python3 python3-dev python3-pip \
       clang-6.0 lldb-6.0 lld-6.0 \
@@ -26,13 +26,6 @@ RUN git config --global credential.helper "cache --timeout=3600" \
       && git config --global push.default simple \
       && git config --global core.editor "vim"
 
-# JDK
-#ENV JAVA_HOME /usr/lib/jvm/default-java
-#ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
-ENV PYCHARM_JDK=/usr/lib/jvm/default-java
-ENV IDEA_JDK=/usr/lib/jvm/default-java
-ENV CL_JDK=/usr/lib/jvm/default-java
-
 # Clang
 RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-6.0 1000 \
   && update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-6.0 1000 \
@@ -40,16 +33,10 @@ RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-6.0 1000 \
 ENV CC=/usr/bin/clang
 ENV CXX=/usr/bin/clang++
 
-# Java IDE
-#platform=linuxWithoutJDK uses the system jdk for idea itself
-RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linuxWithoutJDK&code=IIC" | tar xz && mv idea* /opt/idea \
-      && chmod -R a+w /opt/idea
-
-# Python IDE
-RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linux&code=PCC" | tar xz && mv pycharm* /opt/pycharm \
-      #&& "/usr/bin/python3" "/opt/pycharm/helpers/pydev/setup_cython.py" build_ext --inplace \
-      #&& "/usr/bin/python"  "/opt/pycharm/helpers/pydev/setup_cython.py" build_ext --inplace \
-      && chmod -R a+w /opt/pycharm
+# SQL IDE
+RUN curl -L "http://dbeaver.jkiss.org/files/dbeaver-ce-latest-linux.gtk.x86_64.tar.gz" | tar xz \
+      && mv dbeaver /opt/dbeaver && chmod a+x /opt/dbeaver/dbeaver \
+      && chmod -R a+w /opt/dbeaver
 
 # C++ IDE
 RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linux&code=CL" | tar xz && mv clion* /opt/clion \
@@ -57,10 +44,22 @@ RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linu
       #&& "/usr/bin/python"  "/opt/clion/plugins/python/helpers/pydev/setup_cython.py" build_ext --inplace \
       && chmod -R a+w /opt/clion
 
-# SQL IDE
-RUN curl -L "http://dbeaver.jkiss.org/files/dbeaver-ce-latest-linux.gtk.x86_64.tar.gz" | tar xz \
-      && mv dbeaver /opt/dbeaver && chmod a+x /opt/dbeaver/dbeaver \
-      && chmod -R a+w /opt/dbeaver
+# Python IDE
+RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linux&code=PCC" | tar xz && mv pycharm* /opt/pycharm \
+      #&& "/usr/bin/python3" "/opt/pycharm/helpers/pydev/setup_cython.py" build_ext --inplace \
+      #&& "/usr/bin/python"  "/opt/pycharm/helpers/pydev/setup_cython.py" build_ext --inplace \
+      && chmod -R a+w /opt/pycharm
+
+# Java IDE
+#platform=linuxWithoutJDK uses the system jdk for idea itself
+RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linux&code=IIC" | tar xz && mv idea* /opt/idea \
+      && chmod -R a+w /opt/idea
+
+# JDK
+#ENV JAVA_HOME /usr/lib/jvm/default-java
+#ENV PYCHARM_JDK=/usr/lib/jvm/default-java
+#ENV IDEA_JDK=/usr/lib/jvm/default-java
+#ENV CL_JDK=/usr/lib/jvm/default-java
 
 # Start up the IDEs like this once you're in.
 #/opt/idea/bin/idea.sh > /dev/null 2>&1
