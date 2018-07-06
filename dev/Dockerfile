@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
       vim less bash-completion \
       iputils-ping lsof \
       git openssh-client rsync curl \
-      default-jdk gradle \
+      default-jdk \
       python python-dev python-pip \
       python3 python3-dev python3-pip \
       clang-6.0 lldb-6.0 lld-6.0 \
