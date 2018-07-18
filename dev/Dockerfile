@@ -61,6 +61,13 @@ RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linu
 #ENV IDEA_JDK=/usr/lib/jvm/default-java
 #ENV CL_JDK=/usr/lib/jvm/default-java
 
+# Until ubuntu 18.04.1, we need to fix up java's certificates as per:
+# https://stackoverflow.com/questions/6784463/error-trustanchors-parameter-must-be-non-empty
+# 1. Save an empty JKS file with the default 'changeit' password for Java cacerts.
+# 2. Re-add all the CA certs into the previously empty file.
+RUN /usr/bin/printf '\xfe\xed\xfe\xed\x00\x00\x00\x02\x00\x00\x00\x00\xe2\x68\x6e\x45\xfb\x43\xdf\xa4\xd9\x92\xdd\x41\xce\xb6\xb2\x1c\x63\x30\xd7\x92' > /etc/ssl/certs/java/cacerts \
+  && /var/lib/dpkg/info/ca-certificates-java.postinst configure
+
 # Start up the IDEs like this once you're in.
 #/opt/idea/bin/idea.sh > /dev/null 2>&1
 #/opt/pycharm/bin/pycharm.sh > /dev/null 2>&1
