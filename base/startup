@@ -8,7 +8,7 @@ if [ -f /root/.docker-runrc ]; then
   USER_GROUPS=`cut -d : -f 3 /root/.docker-runrc`
   USER_ID=`cut -d : -f 1     /root/.docker-runrc`
 else
-  echo "WARNING: .docker-runrc not found; user password is well known"
+  echo "WARNING: .docker-runrc not found; user password is well known and sudo will not be available"
   USER_NAME=docker
   USER_PASS=`perl -e 'print crypt(docker,"\\$6\\$saltsalt\\$") . "\n"'`
   USER_GROUPS=audio #no sudo if password is well known
