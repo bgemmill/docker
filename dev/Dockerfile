@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
       sudo \
       vim less bash-completion \
       iputils-ping lsof \
-      git openssh-client rsync curl \
+      git openssh-client rsync curl netcat \
       default-jdk \
       python python-dev python-pip \
       python3 python3-dev python3-pip \
