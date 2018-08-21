@@ -6,7 +6,7 @@ RUN apt-get update -qy && \
     DEBIAN_FRONTEND=noninteractive apt-get install -qy \
     python-pip groff-base \
     default-jdk \
-    bzip2 unzip xz-utils curl \
+    bzip2 unzip xz-utils curl git \
     thrift-compiler \
     && \
     pip install awscli && \
