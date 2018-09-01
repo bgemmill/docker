@@ -8,7 +8,6 @@ RUN apt-get update && apt-get install -y \
       && add-apt-repository ppa:musicbrainz-developers/stable
 
 RUN apt-get update && apt-get install -y \
-      gksu \
       vim less \
       picard libchromaprint-tools \
       python-rgain vorbisgain flac wavpack
