@@ -6,6 +6,7 @@ RUN apt-get update -qy && \
     DEBIAN_FRONTEND=noninteractive apt-get install -qy \
     python-pip groff-base \
     default-jdk \
+    nodejs npm \
     bzip2 unzip xz-utils curl git \
     thrift-compiler \
     && \
