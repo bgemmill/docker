@@ -3,11 +3,13 @@
 FROM project5/base
 MAINTAINER benjamin.gemmill@gmail.com
 
+ARG LLVM_VERSION=7
+
 # clang repository from https://apt.llvm.org
 RUN apt-get update && apt-get install -y \
       software-properties-common curl \
       && curl https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - \
-      && apt-add-repository "deb http://apt.llvm.org/`lsb_release -cs`/ llvm-toolchain-`lsb_release -cs`-6.0 main"
+      && apt-add-repository "deb http://apt.llvm.org/`lsb_release -cs`/ llvm-toolchain-`lsb_release -cs`-${LLVM_VERSION} main"
 
 RUN apt-get update && apt-get install -y \
       sudo \
@@ -17,7 +19,7 @@ RUN apt-get update && apt-get install -y \
       default-jdk \
       python python-dev python-pip \
       python3 python3-dev python3-pip \
-      clang-6.0 lldb-6.0 lld-6.0 \
+      clang-${LLVM_VERSION} lldb-${LLVM_VERSION} lld-${LLVM_VERSION} \
       cmake make ccache \
       libssl-dev libz-dev
 
@@ -27,9 +29,9 @@ RUN git config --global credential.helper "cache --timeout=3600" \
       && git config --global core.editor "vim"
 
 # Clang
-RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-6.0 1000 \
-  && update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-6.0 1000 \
-  && update-alternatives --install /usr/bin/lldb lldb /usr/bin/lldb-6.0 1000
+RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-${LLVM_VERSION} 1000 \
+  && update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-${LLVM_VERSION} 1000 \
+  && update-alternatives --install /usr/bin/lldb lldb /usr/bin/lldb-${LLVM_VERSION} 1000
 ENV CC=/usr/bin/clang
 ENV CXX=/usr/bin/clang++
 
