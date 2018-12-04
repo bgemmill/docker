@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y \
       && apt-add-repository "deb http://apt.llvm.org/`lsb_release -cs`/ llvm-toolchain-`lsb_release -cs`-${LLVM_VERSION} main"
 
 RUN apt-get update && apt-get install -y \
+      git \
       default-jdk \
       python python-dev python-pip \
       python3 python3-dev python3-pip \

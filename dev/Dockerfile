@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y \
       software-properties-common \
       vim less bash-completion \
       iputils-ping lsof \
-      git openssh-client rsync curl netcat
+      openssh-client rsync curl netcat
 
 # SQL IDE
 RUN curl -L "http://dbeaver.jkiss.org/files/dbeaver-ce-latest-linux.gtk.x86_64.tar.gz" | tar xz \
