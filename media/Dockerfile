@@ -1,4 +1,4 @@
-# envision the couch potato; be the couch potato
+# Envision the couch potato; be the couch potato
 
 FROM project5/base
 MAINTAINER benjamin.gemmill@gmail.com
