@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y \
       python3 python3-dev python3-pip \
       clang-${LLVM_VERSION} lldb-${LLVM_VERSION} lld-${LLVM_VERSION} \
       cmake make ccache \
+      flex bison \
       libssl-dev libz-dev
 
 # Clang
