@@ -27,7 +27,7 @@ RUN apt-get install -yq \
   dumb-init docker-ce
 
 VOLUME ["/var/lib/docker"]
-EXPOSE 2375
+#EXPOSE 2375
 
 RUN apt-get autoremove -yq \
   && apt-get autoclean -yq \
