@@ -58,5 +58,3 @@ RUN apt-get autoremove -yq \
   && rm -rf /var/lib/apt/lists/*
 
 ENTRYPOINT ["/sbin/init"]
-#CMD ["dockerd"]
-#CMD ["dockerd", "--host=unix:///var/run/docker.sock", "--host=tcp://0.0.0.0:2375"]
