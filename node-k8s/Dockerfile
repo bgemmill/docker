@@ -1,5 +1,5 @@
 # Run docker inside docker to simulate a kubernites node
-# run with --privileged --net=host -P
+# run with --privileged -P
 
 FROM ubuntu:latest
 MAINTAINER benjamin.gemmill@gmail.com
@@ -31,14 +31,14 @@ RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list
 # systemd for signals and zombie process reaping
 # kubernites wants systemd for init, but we don't want the autostarting cruft:
 # https://developers.redhat.com/blog/2014/05/05/running-systemd-within-docker-container/
-RUN apt-get install -yq \
-  systemd \
-  && rm -f /lib/systemd/system/*.target.wants/* \
-  && rm -f /etc/systemd/system/*.target.wants/*
+ENV container docker
+RUN apt-get install -yq systemd
+#RUN rm -f /lib/systemd/system/*.target.wants/* && rm -f /etc/systemd/system/*.target.wants/*
 
 # kubernites
 RUN apt-get install -yq \
   docker-ce kubelet kubeadm kubectl
+ENV KUBECONFIG=/etc/kubernetes/admin.conf
 
 # overlayfs is not going to work with docker-in-docker
 # https://github.com/docker/for-linux/issues/475
@@ -51,10 +51,16 @@ RUN sed -i 's:ExecStartPre=:ExecStartPre=-:' /lib/systemd/system/containerd.serv
 RUN sed -i 's:ExecStart=/usr/bin/kubelet:ExecStart=/usr/bin/kubelet --fail-swap-on=false:' /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
 
 VOLUME ["/var/lib/docker"]
-#EXPOSE 2375
 
-RUN apt-get autoremove -yq \
-  && apt-get autoclean -yq \
-  && rm -rf /var/lib/apt/lists/*
+# https://kubernetes.io/docs/setup/independent/install-kubeadm/#check-required-ports
+#EXPOSE 6443
+#EXPOSE 8080
+#EXPOSE 10250
 
+#RUN apt-get purge -yq software-properties-common curl \
+#  && apt-get autoremove -yq \
+#  && apt-get autoclean -yq \
+#  && rm -rf /var/lib/apt/lists/*
+
+#ENTRYPOINT ["dumb-init"]
 ENTRYPOINT ["/sbin/init"]
