@@ -17,15 +17,21 @@ RUN curl -L "http://dbeaver.jkiss.org/files/dbeaver-ce-latest-linux.gtk.x86_64.t
 
 # C++ IDE
 RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linux&code=CL" | tar xz && mv clion* /opt/clion \
+      && echo "-Dhidpi=false" >> /opt/clion/bin/clion64.vmoptions \
+      && echo "-Dhidpi=false" >> /opt/clion/bin/clion.vmoptions \
       && chmod -R a+w /opt/clion
 
 # Python IDE
 RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linux&code=PCC" | tar xz && mv pycharm* /opt/pycharm \
+      && echo "-Dhidpi=false" >> /opt/pycharm/bin/pycharm64.vmoptions \
+      && echo "-Dhidpi=false" >> /opt/pycharm/bin/pycharm.vmoptions \
       && chmod -R a+w /opt/pycharm
 
 # Java IDE
 #platform=linuxWithoutJDK uses the system jdk for idea itself
 RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linux&code=IIC" | tar xz && mv idea* /opt/idea \
+      && echo "-Dhidpi=false" >> /opt/idea/bin/idea64.vmoptions \
+      && echo "-Dhidpi=false" >> /opt/idea/bin/idea.vmoptions \
       && chmod -R a+w /opt/idea
 
 # qtcreator
