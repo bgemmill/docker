@@ -28,6 +28,15 @@ RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linu
 RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linux&code=IIC" | tar xz && mv idea* /opt/idea \
       && chmod -R a+w /opt/idea
 
+# qtcreator
+# from: https://download.qt.io/online/qtsdkrepository/linux_x64/desktop/tools_qtcreator/qt.tools.qtcreator/
+#RUN apt-get install -yq p7zip \
+#      && curl -LSs -o qtcreator.7z https://download.qt.io/online/qtsdkrepository/linux_x64/desktop/tools_qtcreator/qt.tools.qtcreator/`curl -LSs https://download.qt.io/online/qtsdkrepository/linux_x64/desktop/tools_qtcreator/Updates.xml | grep -oPm1 "(?<=<Version>)[^<]+"`qtcreator.7z \
+#      && 7zr x *qtcreator.7z \
+#      && mv Tools/QtCreator /opt/ \
+#      && rm -r qtcreator.7z Tools \
+#      && apt-get -yq purge p7zip
+
 # JDK
 #ENV JAVA_HOME /usr/lib/jvm/default-java
 #ENV PYCHARM_JDK=/usr/lib/jvm/default-java
