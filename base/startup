@@ -18,7 +18,7 @@ fi
 # create the groups
 echo $USER_GROUPS | tr ',' ' ' | xargs -n1  groupadd -f
 # create that user
-useradd -m $USER_NAME -u $USER_ID -G $USER_GROUPS -N #> /dev/null 2>&1
+useradd -m $USER_NAME -u $USER_ID -G $USER_GROUPS -N > /dev/null 2>&1
 #chpasswd <<< "$USER_NAME:$USER_PASS"
 awk "{gsub(/${USER_NAME}:.:/,\"${USER_NAME}:${USER_PASS}:\")}1" /etc/shadow > temp.file && cat temp.file > /etc/shadow && rm temp.file
 chown $USER_NAME /home/$USER_NAME
