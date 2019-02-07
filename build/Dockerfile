@@ -31,8 +31,8 @@ RUN apt-get update && apt-get install -y \
 RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-${LLVM_VERSION} 1000 \
   && update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-${LLVM_VERSION} 1000 \
   && update-alternatives --install /usr/bin/lldb lldb /usr/bin/lldb-${LLVM_VERSION} 1000
-ENV CC=/usr/bin/clang
-ENV CXX=/usr/bin/clang++
+ENV CC=clang
+ENV CXX=clang++
 
 # Until ubuntu 18.04.1, we need to fix up java's certificates as per:
 # https://stackoverflow.com/questions/6784463/error-trustanchors-parameter-must-be-non-empty
