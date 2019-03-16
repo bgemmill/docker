@@ -25,7 +25,8 @@ RUN apt-get update && apt-get install -y \
       clang-${LLVM_VERSION} lldb-${LLVM_VERSION} lld-${LLVM_VERSION} \
       cmake make ccache \
       flex bison \
-      libssl-dev libz-dev
+      libssl-dev libz-dev \
+      unixodbc-dev odbc-postgresql libsqliteodbc
 
 # Clang
 RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-${LLVM_VERSION} 1000 \
