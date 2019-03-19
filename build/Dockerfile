@@ -11,14 +11,15 @@ RUN apt-get update && apt-get install -yq \
       software-properties-common curl \
       && curl https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - \
       && apt-add-repository \
-      "deb http://apt.llvm.org/`lsb_release -cs`/ llvm-toolchain-`lsb_release -cs`-${LLVM_VERSION} main" \
-      && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
-      && add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+      "deb http://apt.llvm.org/`lsb_release -cs`/ llvm-toolchain-`lsb_release -cs`-${LLVM_VERSION} main"
+
+      #&& curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
+      #&& add-apt-repository \
+      #"deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
 RUN apt-get update && apt-get install -y \
       git \
-      docker-ce \
+      #docker-ce \
       default-jdk \
       #python python-dev python-pip \
       python3 python3-dev python3-pip \
@@ -43,7 +44,7 @@ ENV CXX=clang++
 #  && /var/lib/dpkg/info/ca-certificates-java.postinst configure
 
 # For docker-in-docker, make sure that the inner filesystem is not on top of the outer
-VOLUME ["/var/lib/docker"]
+#VOLUME ["/var/lib/docker"]
 
 RUN apt-get purge -yq software-properties-common \
   && apt-get autoremove -yq \
