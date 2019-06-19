@@ -8,13 +8,15 @@ RUN apt-get update && apt-get install -y \
       software-properties-common \
       vim less bash-completion \
       iputils-ping lsof \
-      openssh-client rsync curl netcat \
-      libswt-gtk-4-jni
+      openssh-client rsync curl netcat
 
 # SQL IDE
-RUN curl -L "http://dbeaver.jkiss.org/files/dbeaver-ce-latest-linux.gtk.x86_64.tar.gz" | tar xz \
-      && mv dbeaver /opt/dbeaver && chmod a+x /opt/dbeaver/dbeaver \
-      && chmod -R a+w /opt/dbeaver
+RUN add-apt-repository ppa:serge-rider/dbeaver-ce \
+  && apt-get update \
+  && apt-get install -yq dbeaver-ce
+#RUN curl -L "http://dbeaver.jkiss.org/files/dbeaver-ce-latest-linux.gtk.x86_64.tar.gz" | tar xz \
+#      && mv dbeaver /opt/dbeaver && chmod a+x /opt/dbeaver/dbeaver \
+#      && chmod -R a+w /opt/dbeaver
 
 # C++ IDE
 RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linux&code=CL" | tar xz && mv clion* /opt/clion \
