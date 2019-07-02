@@ -6,13 +6,16 @@ MAINTAINER benjamin.gemmill@gmail.com
 ARG LLVM_VERSION=8
 
 # clang repository from https://apt.llvm.org
+# cmake repository from https://apt.kitware.com/
 # docker repository from https://docs.docker.com/install/linux/docker-ce/ubuntu/
 RUN apt-get update && apt-get install -yq \
       software-properties-common curl \
       && curl https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - \
       && apt-add-repository \
-      "deb http://apt.llvm.org/`lsb_release -cs`/ llvm-toolchain-`lsb_release -cs`-${LLVM_VERSION} main"
-
+      "deb http://apt.llvm.org/`lsb_release -cs`/ llvm-toolchain-`lsb_release -cs`-${LLVM_VERSION} main" \
+      && curl https://apt.kitware.com/keys/kitware-archive-latest.asc | apt-key add - \
+      && apt-add-repository \
+      "deb https://apt.kitware.com/ubuntu/ `lsb_release -cs` main"
       #&& curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
       #&& add-apt-repository \
       #"deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
