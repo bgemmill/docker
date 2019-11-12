@@ -31,7 +31,7 @@ RUN apt-get update && apt-get install -y \
       #lldb-${LLVM_VERSION} \
       cmake make ccache \
       flex bison \
-      libssl-dev libz-dev \
+      libssl-dev libz-dev libzstd-dev \
       unixodbc-dev odbc-postgresql libsqliteodbc
 
 # Clang
