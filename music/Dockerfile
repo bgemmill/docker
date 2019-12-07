@@ -16,10 +16,14 @@ RUN apt-get update && apt-get install -y \
 #mp3gain - abandonware
 #python-rgain - abandonware as of 2017-01-10 but still works on command line
 
+# Bring in our settings
 RUN mkdir -p /usr/lib/picard/contrib/plugins
-
 COPY Picard.conf /home/docker/.config/MusicBrainz/Picard.conf 
 RUN chmod -R a+rw /home/docker/.config
+
+#QT4 needs a hint to render properly
+ENV QT_GRAPHICSSYSTEM "native"
+ENV QT_X11_NO_MITSHM=1
 
 RUN apt-get purge -yq software-properties-common \
   && apt-get autoremove -yq \
