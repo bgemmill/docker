@@ -28,6 +28,7 @@ RUN apt-get update && apt-get install -y \
       python3 python3-dev python3-pip \
       clang-${LLVM_VERSION} \
       lld-${LLVM_VERSION} \
+      clang-tidy-${LLVM_VERSION} \
       #lldb-${LLVM_VERSION} \
       cmake make ccache \
       flex bison \
@@ -37,7 +38,8 @@ RUN apt-get update && apt-get install -y \
 # Clang
 RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-${LLVM_VERSION} 1000 \
   && update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-${LLVM_VERSION} 1000 \
-  && update-alternatives --install /usr/bin/ld ld /usr/bin/ld.lld-${LLVM_VERSION} 1000
+  && update-alternatives --install /usr/bin/ld ld /usr/bin/ld.lld-${LLVM_VERSION} 1000 \
+  && update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-${LLVM_VERSION} 1000
   #&& update-alternatives --install /usr/bin/lldb lldb /usr/bin/lldb-${LLVM_VERSION} 1000
 ENV CC=clang
 ENV CXX=clang++
