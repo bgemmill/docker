@@ -29,7 +29,7 @@ RUN apt-get update && apt-get install -y \
       clang-${LLVM_VERSION} \
       lld-${LLVM_VERSION} \
       clang-tidy-${LLVM_VERSION} \
-      lldb-${LLVM_VERSION} \
+      #lldb-${LLVM_VERSION} \
       cmake make ccache \
       flex bison \
       libssl-dev libz-dev libzstd-dev \

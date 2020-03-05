@@ -8,7 +8,8 @@ RUN apt-get update && apt-get install -y \
       software-properties-common \
       vim less bash-completion \
       iputils-ping lsof \
-      openssh-client rsync curl netcat
+      openssh-client rsync curl netcat \
+      gdb
 
 # SQL IDE
 RUN add-apt-repository ppa:serge-rider/dbeaver-ce \
