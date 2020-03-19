@@ -18,10 +18,10 @@ RUN apt-get update && apt-get install -yq \
       && apt-add-repository \
       "deb https://apt.kitware.com/ubuntu/ `lsb_release -cs` main" \
       && curl https://repo.anaconda.com/pkgs/misc/gpgkeys/anaconda.asc | apt-key add - \
-      && apt-add-repository "deb https://repo.anaconda.com/pkgs/misc/debrepo/conda stable main" \
-      && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
-      && add-apt-repository \
-      "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+      && apt-add-repository "deb https://repo.anaconda.com/pkgs/misc/debrepo/conda stable main"
+      #&& curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
+      #&& add-apt-repository \
+      #"deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 
 RUN apt-get update && apt-get install -y \
       git \
