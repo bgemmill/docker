@@ -27,6 +27,7 @@ RUN apt-get update && apt-get install -y \
       clang-tidy-${LLVM_VERSION} \
       lldb-${LLVM_VERSION} \
       cmake make ccache \
+      autoconf automake libtool \
       flex bison \
       libssl-dev libz-dev libzstd-dev \
       unixodbc-dev odbc-postgresql libsqliteodbc
