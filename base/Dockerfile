@@ -1,6 +1,6 @@
 # An interactive base image that runs commands as users rather than root
 
-FROM ubuntu:18.04
+FROM ubuntu:latest
 MAINTAINER benjamin.gemmill@gmail.com
 
 RUN apt-get update
