@@ -40,12 +40,12 @@ RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linu
       && chmod -R a+w /opt/idea
 
 # qtcreator
-RUN apt-get install -yq p7zip libxkbcommon-x11-0 \
-      && curl -LSs -o qtcreator.7z https://download.qt.io/online/qtsdkrepository/linux_x64/desktop/tools_qtcreator/qt.tools.qtcreator/`curl -LSs https://download.qt.io/online/qtsdkrepository/linux_x64/desktop/tools_qtcreator/Updates.xml | grep -oPm1 "(?<=<Version>)[^<]+"`qtcreator.7z \
-      && 7zr x *qtcreator.7z \
-      && mv Tools/QtCreator /opt/qtcreator \
-      && rm -r qtcreator.7z Tools \
-      && apt-get -yq purge p7zip
+#RUN apt-get install -yq p7zip libxkbcommon-x11-0 \
+#      && curl -LSs -o qtcreator.7z https://download.qt.io/online/qtsdkrepository/linux_x64/desktop/tools_qtcreator/qt.tools.qtcreator/`curl -LSs https://download.qt.io/online/qtsdkrepository/linux_x64/desktop/tools_qtcreator/Updates.xml | grep -oPm1 "(?<=<Version>)[^<]+"`qtcreator.7z \
+#      && 7zr x *qtcreator.7z \
+#      && mv Tools/QtCreator /opt/qtcreator \
+#      && rm -r qtcreator.7z Tools \
+#      && apt-get -yq purge p7zip
 
 
 # Start up the IDEs like this once you're in.
