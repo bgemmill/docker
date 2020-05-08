@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -yq curl gpg lsb-release \
       #&& curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
       #&& echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" >> /etc/apt/sources.list
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -yq \
       git \
       #docker-ce \
       default-jdk \
