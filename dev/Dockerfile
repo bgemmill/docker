@@ -12,11 +12,10 @@ RUN apt-get update && apt-get install -y \
       sudo \
       vim less bash-completion \
       iputils-ping lsof \
-      openssh-client rsync curl netcat telnet \
-      conda
+      openssh-client rsync curl netcat telnet
 
 # Python
-RUN /opt/conda/bin/conda update -n base -c defaults conda
+#RUN /opt/conda/bin/conda update -n base -c defaults conda
 
 # SQL IDE
 #RUN curl "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x4a71b51882788fd2" | apt-key add - \
