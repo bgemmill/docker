@@ -4,9 +4,9 @@ FROM project5/build
 MAINTAINER benjamin.gemmill@gmail.com
 
 # conda repository from https://www.anaconda.com/rpm-and-debian-repositories-for-miniconda
-RUN apt-get update && apt-get install -yq curl gpg lsb-release \
-      && curl "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x957D2708A03A4626" | apt-key add - \
-      && echo "deb http://ppa.launchpad.net/oibaf/graphics-drivers/ubuntu $(lsb_release -cs) main" >> /etc/apt/sources.list
+#RUN apt-get update && apt-get install -yq curl gpg lsb-release \
+      #&& curl "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x957D2708A03A4626" | apt-key add - \
+      #&& echo "deb http://ppa.launchpad.net/oibaf/graphics-drivers/ubuntu $(lsb_release -cs) main" >> /etc/apt/sources.list
       #&& curl https://repo.anaconda.com/pkgs/misc/gpgkeys/anaconda.asc | apt-key add - \
       #&& echo "deb https://repo.anaconda.com/pkgs/misc/debrepo/conda stable main" >> /etc/apt/sources.list
 
