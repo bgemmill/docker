@@ -25,7 +25,8 @@ RUN apt-get update && apt-get install -y \
 #  && apt-get update && apt-get install -yq dbeaver-ce libswt-gtk-4-jni
 RUN curl -L "http://dbeaver.jkiss.org/files/dbeaver-ce-latest-linux.gtk.x86_64.tar.gz" | tar xz \
       && mv dbeaver /opt/dbeaver && chmod a+x /opt/dbeaver/dbeaver \
-      && chmod -R a+w /opt/dbeaver
+      && chmod -R a+w /opt/dbeaver \
+      && apt-get install -yq libswt-gtk-4-jni
 
 # C++ IDE
 RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linux&code=CL" | tar xz && mv clion* /opt/clion \
