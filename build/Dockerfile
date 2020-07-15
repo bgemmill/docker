@@ -36,6 +36,8 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -yq \
 RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-${LLVM_VERSION} 1000 \
   && update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-${LLVM_VERSION} 1000 \
   && update-alternatives --install /usr/bin/ld ld /usr/bin/ld.lld-${LLVM_VERSION} 1000 \
+  && update-alternatives --install /usr/bin/ar ar /usr/bin/llvm-ar-${LLVM_VERSION} 1000 \
+  && update-alternatives --install /usr/bin/ranlib ranlib /usr/bin/llvm-ranlib-${LLVM_VERSION} 1000 \
   && update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-${LLVM_VERSION} 1000 \
   && update-alternatives --install /usr/bin/lldb lldb /usr/bin/lldb-${LLVM_VERSION} 1000
 ENV CC=clang
