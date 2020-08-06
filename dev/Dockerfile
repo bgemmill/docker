@@ -12,7 +12,7 @@ MAINTAINER benjamin.gemmill@gmail.com
 
 RUN apt-get update && apt-get install -y \
       sudo \
-      vim less bash-completion \
+      vim less bash-completion htop \
       iputils-ping lsof \
       openssh-client rsync curl netcat telnet
 
