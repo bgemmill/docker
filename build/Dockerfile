@@ -3,7 +3,7 @@
 FROM project5/base
 MAINTAINER benjamin.gemmill@gmail.com
 
-ARG LLVM_VERSION=10
+ARG LLVM_VERSION=11
 
 # clang repository from https://apt.llvm.org
 # cmake repository from https://apt.kitware.com
@@ -39,7 +39,9 @@ RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-${LLVM_VER
   && update-alternatives --install /usr/bin/ar ar /usr/bin/llvm-ar-${LLVM_VERSION} 1000 \
   && update-alternatives --install /usr/bin/ranlib ranlib /usr/bin/llvm-ranlib-${LLVM_VERSION} 1000 \
   && update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-${LLVM_VERSION} 1000 \
-  && update-alternatives --install /usr/bin/lldb lldb /usr/bin/lldb-${LLVM_VERSION} 1000
+  && update-alternatives --install /usr/bin/lldb lldb /usr/bin/lldb-${LLVM_VERSION} 1000 \
+  && update-alternatives --install /usr/bin/llvm-symbolizer llvm-symbolizer /usr/bin/llvm-symbolizer-${LLVM_VERSION} 1000
+
 ENV CC=clang
 ENV CXX=clang++
 
