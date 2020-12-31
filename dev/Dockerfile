@@ -16,7 +16,8 @@ RUN apt-get update && apt-get install -y \
       sudo \
       vim less bash-completion htop \
       iputils-ping lsof \
-      openssh-client rsync curl netcat telnet
+      openssh-client rsync curl netcat telnet \
+      cmake-curses-gui
 
 # Python
 #RUN /opt/conda/bin/conda update -n base -c defaults conda
