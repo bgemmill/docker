@@ -33,7 +33,10 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -yq \
       unixodbc-dev odbc-postgresql libsqliteodbc
 
 # Clang
-RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-${LLVM_VERSION} 1000 \
+RUN true \
+  && update-alternatives --install /usr/bin/cc cc /usr/bin/clang-${LLVM_VERSION} 1000 \
+  && update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang++-${LLVM_VERSION} 1000 \
+  && update-alternatives --install /usr/bin/clang clang /usr/bin/clang-${LLVM_VERSION} 1000 \
   && update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-${LLVM_VERSION} 1000 \
   && update-alternatives --install /usr/bin/ld ld /usr/bin/ld.lld-${LLVM_VERSION} 1000 \
   && update-alternatives --install /usr/bin/ar ar /usr/bin/llvm-ar-${LLVM_VERSION} 1000 \
@@ -41,9 +44,6 @@ RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-${LLVM_VER
   && update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-${LLVM_VERSION} 1000 \
   && update-alternatives --install /usr/bin/lldb lldb /usr/bin/lldb-${LLVM_VERSION} 1000 \
   && update-alternatives --install /usr/bin/llvm-symbolizer llvm-symbolizer /usr/bin/llvm-symbolizer-${LLVM_VERSION} 1000
-
-ENV CC=clang
-ENV CXX=clang++
 
 # For docker-in-docker, make sure that the inner filesystem is not on top of the outer
 #VOLUME ["/var/lib/docker"]
