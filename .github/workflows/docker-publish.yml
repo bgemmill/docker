@@ -1,6 +1,8 @@
 name: Docker
 
 on:
+  schedule:
+    - cron:  '0 4,16 * * *' # utc for midnignt and noon eastern
   push:
     branches:
       - 'master'
