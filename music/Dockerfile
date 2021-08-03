@@ -10,11 +10,13 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get update && apt-get install -y \
       vim less \
       picard libchromaprint-tools \
-      python-rgain vorbisgain flac wavpack
+      vorbisgain flac wavpack \
+      python3 python3-pip python3-cairo
+RUN python3 -m pip install rgain3
 #rhythmbox rhythmbox-plugin-cdrecorder - ripping CDs
 #bs1770gain - mp3gain replacement but takes different commands
 #mp3gain - abandonware
-#python-rgain - abandonware as of 2017-01-10 but still works on command line
+#python-rgain - abandonware
 
 # Bring in our settings
 RUN mkdir -p /usr/lib/picard/contrib/plugins
