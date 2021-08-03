@@ -27,7 +27,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -yq \
       clang-tidy-${LLVM_VERSION} \
       lldb-${LLVM_VERSION} \
       cmake make ccache \
-      autoconf automake libtool \
+      autoconf automake libtool pkg-config \
       flex bison \
       libssl-dev libz-dev libzstd-dev \
       unixodbc-dev odbc-postgresql libsqliteodbc
