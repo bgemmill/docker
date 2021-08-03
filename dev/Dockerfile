@@ -33,16 +33,19 @@ RUN curl -L "http://dbeaver.jkiss.org/files/dbeaver-ce-latest-linux.gtk.x86_64.t
 
 # C++ IDE
 RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linux&code=CL" | tar xz && mv clion* /opt/clion \
-      && chmod -R a+w /opt/clion
+      && chmod -R a+w /opt/clion \
+      && apt-get install -yq libgbm1
 
 # Python IDE
 RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linux&code=PCC" | tar xz && mv pycharm* /opt/pycharm \
-      && chmod -R a+w /opt/pycharm
+      && chmod -R a+w /opt/pycharm \
+      && apt-get install -yq libgbm1
 
 # Java IDE
 #platform=linuxWithoutJDK uses the system jdk for idea itself
 RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linux&code=IIC" | tar xz && mv idea* /opt/idea \
-      && chmod -R a+w /opt/idea
+      && chmod -R a+w /opt/idea \
+      && apt-get install -yq libgbm1
 
 # qtcreator
 #RUN apt-get install -yq p7zip libxkbcommon-x11-0 \
