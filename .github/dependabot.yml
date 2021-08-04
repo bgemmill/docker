@@ -1,12 +1,50 @@
 version: 2
 updates:
-  # Maintain dependencies
+  # Github Actions      
+  
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "daily"
       
+  # Docker
+      
   - package-ecosystem: "docker"
-    directory: "/"
+    directory: "/base"
+    schedule:
+      interval: "daily"
+      
+  - package-ecosystem: "docker"
+    directory: "/build"
+    schedule:
+      interval: "daily"  
+      
+  - package-ecosystem: "docker"
+    directory: "/dev"
+    schedule:
+      interval: "daily"
+      
+  - package-ecosystem: "docker"
+    directory: "/dind"
+    schedule:
+      interval: "daily"
+      
+  - package-ecosystem: "docker"
+    directory: "/music"
+    schedule:
+      interval: "daily"
+   
+  - package-ecosystem: "docker"
+    directory: "/sshd"
+    schedule:
+      interval: "daily"
+      
+  - package-ecosystem: "docker"
+    directory: "/sslh"
+    schedule:
+      interval: "daily"
+      
+  - package-ecosystem: "docker"
+    directory: "/wine"
     schedule:
       interval: "daily"
