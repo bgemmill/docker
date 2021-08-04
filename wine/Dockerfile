@@ -1,6 +1,6 @@
 # Run windows programs like a champion
 
-FROM ubuntu:14.04
+FROM ubuntu:20.04
 MAINTAINER benjamin.gemmill@gmail.com
 
 RUN apt-get update && apt-get install -y locales && locale-gen en_US.UTF-8
