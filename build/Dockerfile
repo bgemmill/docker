@@ -3,7 +3,7 @@
 FROM project5/base
 MAINTAINER benjamin.gemmill@gmail.com
 
-ARG LLVM_VERSION=12
+ARG LLVM_VERSION=13
 
 # clang repository from https://apt.llvm.org
 # cmake repository from https://apt.kitware.com
