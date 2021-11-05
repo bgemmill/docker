@@ -31,11 +31,6 @@ RUN curl -L "http://dbeaver.jkiss.org/files/dbeaver-ce-latest-linux.gtk.x86_64.t
       && chmod -R a+w /opt/dbeaver \
       && apt-get install -yq libswt-gtk-4-jni
 
-# C++ IDE
-#RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linux&code=CL" | tar xz && mv clion* /opt/clion \
-#      && chmod -R a+w /opt/clion \
-#      && apt-get install -yq libgbm1
-
 # Python IDE
 RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linux&code=PCC" | tar xz && mv pycharm* /opt/pycharm \
       && chmod -R a+w /opt/pycharm \
@@ -47,6 +42,7 @@ RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linu
       && chmod -R a+w /opt/idea \
       && apt-get install -yq libgbm1
 
+# C++ IDE
 # qtcreator
 # the libraries here satisfy: ldd /opt/qtcreator/lib/Qt/plugins/platforms/libqxcb.so
 RUN apt-get install -yq p7zip \
@@ -57,6 +53,14 @@ RUN apt-get install -yq p7zip \
       && mv Tools/QtCreator /opt/qtcreator \
       && rm -r qtcreator.7z Tools \
       && apt-get -yq purge p7zip
+
+# clion
+#RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linux&code=CL" | tar xz && mv clion* /opt/clion \
+#      && chmod -R a+w /opt/clion \
+#      && apt-get install -yq libgbm1
+
+# Git GUI
+RUN apt-get install -yq --no-install-recommends gnome-icon-theme meld
 
 
 # Start up the IDEs like this once you're in.
