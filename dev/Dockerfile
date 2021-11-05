@@ -59,7 +59,7 @@ RUN apt-get install -yq p7zip \
 #      && chmod -R a+w /opt/clion \
 #      && apt-get install -yq libgbm1
 
-# Git GUI
+# Graphical Git diff
 RUN apt-get install -yq --no-install-recommends gnome-icon-theme meld
 
 
