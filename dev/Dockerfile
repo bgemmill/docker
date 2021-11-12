@@ -54,13 +54,20 @@ RUN apt-get install -yq p7zip \
       && rm -r qtcreator.7z Tools \
       && apt-get -yq purge p7zip
 
+# vscode
+RUN curl -o vscode.deb -L "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64" \
+      && dpkg -i vscode.deb \
+      ; apt-get -f -yq install \
+      && rm vscode.deb \
+      && apt-get install -yq gdb
+
 # clion
 #RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linux&code=CL" | tar xz && mv clion* /opt/clion \
 #      && chmod -R a+w /opt/clion \
 #      && apt-get install -yq libgbm1
 
 # Graphical Git diff
-RUN apt-get install -yq --no-install-recommends gnome-icon-theme meld
+#RUN apt-get install -yq --no-install-recommends gnome-icon-theme meld
 
 
 # Start up the IDEs like this once you're in.
