@@ -45,14 +45,14 @@ RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linu
 # C++ IDE
 # qtcreator
 # the libraries here satisfy: ldd /opt/qtcreator/lib/Qt/plugins/platforms/libqxcb.so
-RUN apt-get install -yq p7zip \
-      libxkbcommon-x11-0 \
-      `apt list libxcb-* | cut -d '/' -f 1 | grep -v '\-doc$\|\-dev$' | grep libxcb-` \
-      && curl -LSs -o qtcreator.7z https://download.qt.io/online/qtsdkrepository/linux_x64/desktop/tools_qtcreator/qt.tools.qtcreator/`curl -LSs https://download.qt.io/online/qtsdkrepository/linux_x64/desktop/tools_qtcreator/Updates.xml | grep -oPm1 "(?<=<Version>)[^<]+"`qtcreator.7z \
-      && 7zr x *qtcreator.7z \
-      && mv Tools/QtCreator /opt/qtcreator \
-      && rm -r qtcreator.7z Tools \
-      && apt-get -yq purge p7zip
+#RUN apt-get install -yq p7zip \
+#      libxkbcommon-x11-0 \
+#      `apt list libxcb-* | cut -d '/' -f 1 | grep -v '\-doc$\|\-dev$' | grep libxcb-` \
+#      && curl -LSs -o qtcreator.7z https://download.qt.io/online/qtsdkrepository/linux_x64/desktop/tools_qtcreator/qt.tools.qtcreator/`curl -LSs https://download.qt.io/online/qtsdkrepository/linux_x64/desktop/tools_qtcreator/Updates.xml | grep -oPm1 "(?<=<Version>)[^<]+"`qtcreator.7z \
+#      && 7zr x *qtcreator.7z \
+#      && mv Tools/QtCreator /opt/qtcreator \
+#      && rm -r qtcreator.7z Tools \
+#      && apt-get -yq purge p7zip
 
 # vscode
 RUN curl -o vscode.deb -L "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64" \
