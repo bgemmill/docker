@@ -12,7 +12,7 @@ MAINTAINER benjamin.gemmill@gmail.com
       #&& curl https://repo.anaconda.com/pkgs/misc/gpgkeys/anaconda.asc | apt-key add - \
       #&& echo "deb https://repo.anaconda.com/pkgs/misc/debrepo/conda stable main" >> /etc/apt/sources.list
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -yq \
       sudo \
       vim less bash-completion htop \
       iputils-ping lsof \

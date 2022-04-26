@@ -3,7 +3,7 @@ MAINTAINER Ben Gemmill <benjamin.gemmill@gmail.com>
 
 # AWSCLI, JDK, and thrift
 RUN apt-get update -qy && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -qy \
+    DEBIAN_FRONTEND=noninteractive apt-get install -yq \
     python-pip groff-base \
     default-jdk \
     nodejs npm \
@@ -32,7 +32,7 @@ ADD https://github.com/krallin/tini/releases/download/v0.18.0/tini /tini
 RUN chmod +x /tini
 
 # Make sure that unicode works if it ends up on the terminal
-RUN apt-get update && apt-get install -y locales && locale-gen en_US.UTF-8
+RUN apt-get update && apt-get install -yq locales && locale-gen en_US.UTF-8
 ENV LANG='en_US.UTF-8' LC_ALL='en_US.UTF-8'
 
 # Jenkins

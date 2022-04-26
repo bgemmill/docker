@@ -3,11 +3,11 @@
 FROM project5/base
 MAINTAINER benjamin.gemmill@gmail.com
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -yq \
       software-properties-common \
       && add-apt-repository ppa:musicbrainz-developers/stable
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -yq \
       vim less \
       picard libchromaprint-tools \
       vorbisgain flac wavpack \
