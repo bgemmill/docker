@@ -7,17 +7,15 @@ RUN apt-get update && apt-get install -yq locales && locale-gen en_US.UTF-8
 ENV LANG='en_US.UTF-8' LC_ALL='en_US.UTF-8'
 
 RUN apt-get update && apt-get install -yq curl gpg lsb-release \
-      #&& curl "https://dl.winehq.org/wine-builds/Release.key" | apt-key add - \
-      && curl "https://dl.winehq.org/wine-builds/winehq.key" | apt-key add - \
-      && echo "deb https://dl.winehq.org/wine-builds/ubuntu $(lsb_release -cs) main" >> /etc/apt/sources.list 
+      && curl "https://dl.winehq.org/wine-builds/winehq.key" > /usr/share/keyrings/winehq-archive.key \
+      && curl "https://dl.winehq.org/wine-builds/ubuntu/dists/$(lsb_release -cs)/winehq-$(lsb_release -cs).sources" > /etc/apt/sources.list.d/winehq-$(lsb_release -cs).sources
 
-# versions for wine things here: https://launchpad.net/~ubuntu-wine/+archive/ubuntu/ppa
 RUN dpkg --add-architecture i386
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -yq \
       winehq-stable
       #xvfb
 
-RUN curl https://dl.winehq.org/wine/wine-mono/6.3.0/wine-mono-6.3.0-x86.msi > wine-mono.msi \
+RUN curl https://dl.winehq.org/wine/wine-mono/7.2.0/wine-mono-7.2.0-x86.msi > wine-mono.msi \
   && wine start wine-mono.msi \
   && rm wine-mono.msi
 
