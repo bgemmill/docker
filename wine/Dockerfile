@@ -12,7 +12,8 @@ RUN apt-get update && apt-get install -yq curl gpg lsb-release \
 
 RUN dpkg --add-architecture i386
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -yq \
-      winehq-stable
+      winehq-staging
+      #winehq-stable
       #xvfb
 
 RUN curl https://dl.winehq.org/wine/wine-mono/7.2.0/wine-mono-7.2.0-x86.msi > wine-mono.msi \
