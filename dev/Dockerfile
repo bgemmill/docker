@@ -32,15 +32,15 @@ RUN curl -L "http://dbeaver.jkiss.org/files/dbeaver-ce-latest-linux.gtk.x86_64.t
       && apt-get install -yq libswt-gtk-4-jni
 
 # Python IDE
-RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linux&code=PCC" | tar xz && mv pycharm* /opt/pycharm \
-      && chmod -R a+w /opt/pycharm \
-      && apt-get install -yq libgbm1
+#RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linux&code=PCC" | tar xz && mv pycharm* /opt/pycharm \
+#      && chmod -R a+w /opt/pycharm \
+#      && apt-get install -yq libgbm1
 
 # Java IDE
 #platform=linuxWithoutJDK uses the system jdk for idea itself
-RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linux&code=IIC" | tar xz && mv idea* /opt/idea \
-      && chmod -R a+w /opt/idea \
-      && apt-get install -yq libgbm1
+#RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linux&code=IIC" | tar xz && mv idea* /opt/idea \
+#      && chmod -R a+w /opt/idea \
+#      && apt-get install -yq libgbm1
 
 # C++ IDE
 # qtcreator
