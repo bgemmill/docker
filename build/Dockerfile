@@ -24,6 +24,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -yq \
       python3 python3-dev python3-pip \
       clang-${LLVM_VERSION} \
       lld-${LLVM_VERSION} \
+      clangd-${LLVM_VERSION} \
       clang-tidy-${LLVM_VERSION} \
       lldb-${LLVM_VERSION} \
       cmake make ccache \
@@ -41,6 +42,7 @@ RUN true \
   && update-alternatives --install /usr/bin/ld ld /usr/bin/ld.lld-${LLVM_VERSION} 1000 \
   && update-alternatives --install /usr/bin/ar ar /usr/bin/llvm-ar-${LLVM_VERSION} 1000 \
   && update-alternatives --install /usr/bin/ranlib ranlib /usr/bin/llvm-ranlib-${LLVM_VERSION} 1000 \
+  && update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-${LLVM_VERSION} 1000 \
   && update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-${LLVM_VERSION} 1000 \
   && update-alternatives --install /usr/bin/lldb lldb /usr/bin/lldb-${LLVM_VERSION} 1000 \
   && update-alternatives --install /usr/bin/llvm-symbolizer llvm-symbolizer /usr/bin/llvm-symbolizer-${LLVM_VERSION} 1000
