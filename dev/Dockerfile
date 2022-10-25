@@ -58,8 +58,8 @@ RUN curl -L "http://dbeaver.jkiss.org/files/dbeaver-ce-latest-linux.gtk.x86_64.t
 RUN curl -o vscode.deb -L "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64" \
       && dpkg -i vscode.deb \
       ; apt-get -f -yq install \
-      && rm vscode.deb \
-      && apt-get install -yq gdb
+      && rm vscode.deb
+      #&& apt-get install -yq gdb
 
 # clion
 #RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linux&code=CL" | tar xz && mv clion* /opt/clion \
