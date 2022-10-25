@@ -11,12 +11,13 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -yq \
       vim less \
       picard libchromaprint-tools \
       vorbisgain flac wavpack \
-      python3 python3-pip python3-cairo
-RUN python3 -m pip install rgain3
+      curl
 #rhythmbox rhythmbox-plugin-cdrecorder - ripping CDs
-#bs1770gain - mp3gain replacement but takes different commands
-#mp3gain - abandonware
-#python-rgain - abandonware
+
+RUN curl -o rsgain.deb -L "https://github.com/complexlogic/rsgain/releases/download/v3.0.1/rsgain_3.0.1_amd64.deb" \
+      && dpkg -i rsgain.deb \
+      ; apt-get -f -yq install \
+      && rm rsgain.deb
 
 # Bring in our settings
 RUN mkdir -p /usr/lib/picard/contrib/plugins
