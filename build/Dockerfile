@@ -50,6 +50,12 @@ RUN true \
 # Ninja
 ENV CMAKE_GENERATOR Ninja
 
+# Python Poetry
+ENV POETRY_HOME /opt/poetry
+RUN python3 -m venv $POETRY_HOME \
+  && $POETRY_HOME/bin/pip install poetry
+ENV PATH $POETRY_HOME/bin:$PATH
+
 # For docker-in-docker, make sure that the inner filesystem is not on top of the outer
 #VOLUME ["/var/lib/docker"]
 
