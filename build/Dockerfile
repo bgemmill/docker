@@ -27,7 +27,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -yq \
       clangd-${LLVM_VERSION} \
       clang-tidy-${LLVM_VERSION} \
       lldb-${LLVM_VERSION} \
-      cmake make ccache ninja-build \
+      cmake make ccache \
       pkg-config \
       flex bison \
       libssl-dev libz-dev libzstd-dev \
@@ -46,9 +46,6 @@ RUN true \
   && update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-${LLVM_VERSION} 1000 \
   && update-alternatives --install /usr/bin/lldb lldb /usr/bin/lldb-${LLVM_VERSION} 1000 \
   && update-alternatives --install /usr/bin/llvm-symbolizer llvm-symbolizer /usr/bin/llvm-symbolizer-${LLVM_VERSION} 1000
-
-# Ninja
-ENV CMAKE_GENERATOR Ninja
 
 # Python Poetry
 ENV POETRY_HOME /opt/poetry
