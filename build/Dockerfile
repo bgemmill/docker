@@ -4,6 +4,7 @@ FROM project5/base
 MAINTAINER benjamin.gemmill@gmail.com
 
 ARG LLVM_VERSION=15
+ARG MOLD_VERSION=1.11.0
 
 # clang repository from https://apt.llvm.org
 # cmake repository from https://apt.kitware.com
@@ -27,7 +28,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -yq \
       clangd-${LLVM_VERSION} \
       clang-tidy-${LLVM_VERSION} \
       lldb-${LLVM_VERSION} \
-      cmake make ccache ninja-build \
+      cmake make ccache \
       pkg-config \
       flex bison \
       libssl-dev libz-dev libzstd-dev \
@@ -48,13 +49,23 @@ RUN true \
   && update-alternatives --install /usr/bin/llvm-symbolizer llvm-symbolizer /usr/bin/llvm-symbolizer-${LLVM_VERSION} 1000
 
 # Ninja
-ENV CMAKE_GENERATOR Ninja
+#RUN apt-get install -yq ninja-build
+#ENV CMAKE_GENERATOR Ninja
 
 # Python Poetry
 ENV POETRY_HOME /opt/poetry
 RUN python3 -m venv $POETRY_HOME \
   && $POETRY_HOME/bin/pip install poetry
 ENV PATH $POETRY_HOME/bin:$PATH
+
+# Mold
+ENV MOLD_HOME /opt/mold
+RUN mkdir -p "${MOLD_HOME}" \
+  && curl -sSL https://github.com/rui314/mold/releases/download/v${MOLD_VERSION}/mold-${MOLD_VERSION}-x86_64-linux.tar.gz > mold.tar.gz \
+  && tar -xzf mold.tar.gz --strip-components=1 -C "${MOLD_HOME}" \
+  && rm mold.tar.gz \
+  && update-alternatives --install /usr/bin/ld ld $MOLD_HOME/bin/mold 1001
+ENV PATH $MOLD_HOME/bin:$PATH
 
 # For docker-in-docker, make sure that the inner filesystem is not on top of the outer
 #VOLUME ["/var/lib/docker"]
