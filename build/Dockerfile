@@ -59,13 +59,13 @@ RUN python3 -m venv $POETRY_HOME \
 ENV PATH $POETRY_HOME/bin:$PATH
 
 # Mold
-ENV MOLD_HOME /opt/mold
-RUN mkdir -p "${MOLD_HOME}" \
-  && curl -sSL https://github.com/rui314/mold/releases/download/v${MOLD_VERSION}/mold-${MOLD_VERSION}-x86_64-linux.tar.gz > mold.tar.gz \
-  && tar -xzf mold.tar.gz --strip-components=1 -C "${MOLD_HOME}" \
-  && rm mold.tar.gz \
-  && update-alternatives --install /usr/bin/ld ld $MOLD_HOME/bin/mold 1001
-ENV PATH $MOLD_HOME/bin:$PATH
+#ENV MOLD_HOME /opt/mold
+#RUN mkdir -p "${MOLD_HOME}" \
+#  && curl -sSL https://github.com/rui314/mold/releases/download/v${MOLD_VERSION}/mold-${MOLD_VERSION}-x86_64-linux.tar.gz > mold.tar.gz \
+#  && tar -xzf mold.tar.gz --strip-components=1 -C "${MOLD_HOME}" \
+#  && rm mold.tar.gz \
+#  && update-alternatives --install /usr/bin/ld ld $MOLD_HOME/bin/mold 1001
+#ENV PATH $MOLD_HOME/bin:$PATH
 
 # For docker-in-docker, make sure that the inner filesystem is not on top of the outer
 #VOLUME ["/var/lib/docker"]
