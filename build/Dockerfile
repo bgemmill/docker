@@ -3,8 +3,8 @@
 FROM project5/base
 MAINTAINER benjamin.gemmill@gmail.com
 
-ARG LLVM_VERSION=16
-ARG MOLD_VERSION=1.11.0
+ARG LLVM_VERSION=15
+#ARG MOLD_VERSION=1.11.0
 
 # clang repository from https://apt.llvm.org
 # cmake repository from https://apt.kitware.com
