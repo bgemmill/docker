@@ -15,11 +15,11 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install --install-r
       winehq-stable
       #xvfb
 
-RUN curl https://dl.winehq.org/wine/wine-mono/7.4.0/wine-mono-7.4.0-x86.msi > wine-mono.msi \
+RUN curl https://dl.winehq.org/wine/wine-mono/8.0.0/wine-mono-8.0.0-x86.msi > wine-mono.msi \
   && wine start wine-mono.msi \
   && rm wine-mono.msi
 
-#RUN curl https://dl.winehq.org/wine/wine-gecko/2.47.3/wine-gecko-2.47.3-x86_64.msi > wine-gecko.msi \
+#RUN curl https://dl.winehq.org/wine/wine-gecko/2.47.4/wine-gecko-2.47.4-x86_64.msi > wine-gecko.msi \
 #  && xvfb-run wine start wine-gecko.msi \
 #  && rm wine-gecko.msi
 
