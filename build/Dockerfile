@@ -55,7 +55,8 @@ RUN true \
 # Python Poetry
 ENV POETRY_HOME /opt/poetry
 RUN python3 -m venv $POETRY_HOME \
-  && $POETRY_HOME/bin/pip install poetry
+  && $POETRY_HOME/bin/pip install poetry \
+  && /opt/poetry/bin/poetry self add poetry-dotenv-plugin
 ENV PATH $POETRY_HOME/bin:$PATH
 
 # Mold
