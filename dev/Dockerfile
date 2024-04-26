@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -yq \
       sudo \
       vim less bash-completion htop \
       iputils-ping lsof \
-      openssh-client rsync curl netcat telnet \
+      openssh-client rsync curl telnet \
       cmake-curses-gui
 
 # Python
