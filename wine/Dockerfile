@@ -1,10 +1,10 @@
 # Run windows programs like a champion
 
-FROM project5/base
+FROM ubuntu:22.04
 MAINTAINER benjamin.gemmill@gmail.com
 
-#RUN apt-get update && apt-get install -yq locales && locale-gen en_US.UTF-8
-#ENV LANG='en_US.UTF-8' LC_ALL='en_US.UTF-8'
+RUN apt-get update && apt-get install -yq locales && locale-gen en_US.UTF-8
+ENV LANG='en_US.UTF-8' LC_ALL='en_US.UTF-8'
 
 RUN apt-get update && apt-get install -yq curl gpg lsb-release \
       && curl "https://dl.winehq.org/wine-builds/winehq.key" > /etc/apt/keyrings/winehq-archive.key \
