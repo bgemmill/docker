@@ -1,10 +1,10 @@
 # Run windows programs like a champion
 
-FROM ubuntu:latest
+FROM project5/base
 MAINTAINER benjamin.gemmill@gmail.com
 
-RUN apt-get update && apt-get install -yq locales && locale-gen en_US.UTF-8
-ENV LANG='en_US.UTF-8' LC_ALL='en_US.UTF-8'
+#RUN apt-get update && apt-get install -yq locales && locale-gen en_US.UTF-8
+#ENV LANG='en_US.UTF-8' LC_ALL='en_US.UTF-8'
 
 RUN apt-get update && apt-get install -yq curl gpg lsb-release \
       && curl "https://dl.winehq.org/wine-builds/winehq.key" > /etc/apt/keyrings/winehq-archive.key \
@@ -15,9 +15,9 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install --install-r
       winehq-stable
       #xvfb
 
-RUN curl https://dl.winehq.org/wine/wine-mono/8.0.0/wine-mono-8.0.0-x86.msi > wine-mono.msi \
-  && wine start wine-mono.msi \
-  && rm wine-mono.msi
+#RUN curl https://dl.winehq.org/wine/wine-mono/8.0.0/wine-mono-8.0.0-x86.msi > wine-mono.msi \
+#  && wine start wine-mono.msi \
+#  && rm wine-mono.msi
 
 #RUN curl https://dl.winehq.org/wine/wine-gecko/2.47.4/wine-gecko-2.47.4-x86_64.msi > wine-gecko.msi \
 #  && xvfb-run wine start wine-gecko.msi \
