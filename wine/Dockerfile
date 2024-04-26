@@ -1,6 +1,6 @@
 # Run windows programs like a champion
 
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 MAINTAINER benjamin.gemmill@gmail.com
 
 RUN apt-get update && apt-get install -yq locales && locale-gen en_US.UTF-8
