@@ -1,6 +1,6 @@
 # Run windows programs like a champion
 
-FROM ubuntu:22.04
+FROM ubuntu:latest
 MAINTAINER benjamin.gemmill@gmail.com
 
 RUN apt-get update && apt-get install -yq locales && locale-gen en_US.UTF-8
@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -yq curl gpg lsb-release \
 
 RUN dpkg --add-architecture i386
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install --install-recommends -yq \
-      winehq-stable
+      winehq-devel #stable
       #xvfb
 
 #RUN curl https://dl.winehq.org/wine/wine-mono/8.0.0/wine-mono-8.0.0-x86.msi > wine-mono.msi \
