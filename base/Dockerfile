@@ -1,6 +1,6 @@
 # An interactive base image that runs commands as users rather than root
 
-FROM ubuntu:latest
+FROM ubuntu:24.04
 MAINTAINER benjamin.gemmill@gmail.com
 
 RUN apt-get update
