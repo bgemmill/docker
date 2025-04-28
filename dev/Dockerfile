@@ -26,7 +26,7 @@ RUN apt-get update && apt-get install -yq \
 #RUN curl "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x4a71b51882788fd2" | apt-key add - \
 #  && echo "deb http://ppa.launchpad.net/serge-rider/dbeaver-ce/ubuntu $(lsb_release -cs) main" >> /etc/apt/sources.list \
 #  && apt-get update && apt-get install -yq dbeaver-ce libswt-gtk-4-jni
-RUN curl -L "http://dbeaver.jkiss.org/files/dbeaver-ce-latest-linux.gtk.x86_64.tar.gz" | tar xz \
+RUN curl -L "https://dbeaver.io/files/dbeaver-ce-latest-linux.gtk.x86_64-nojdk.tar.gz" | tar xz \
       && mv dbeaver /opt/dbeaver && chmod a+x /opt/dbeaver/dbeaver \
       && chmod -R a+w /opt/dbeaver \
       && apt-get install -yq libswt-gtk-4-jni
