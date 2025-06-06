@@ -23,6 +23,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -yq \
       default-jdk \
       #python python-dev python-pip \
       python3 python3-dev python3-pip python3-venv \
+      golang-go \
       clang-${LLVM_VERSION} \
       lld-${LLVM_VERSION} \
       clangd-${LLVM_VERSION} \
