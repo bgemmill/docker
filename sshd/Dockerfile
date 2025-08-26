@@ -1,7 +1,7 @@
 # A reasonable terminal environment for any NAS that can run docker
 
 FROM ubuntu:latest
-MAINTAINER benjamin.gemmill@gmail.com
+LABEL org.opencontainers.image.authors="benjamin.gemmill@gmail.com"
 
 RUN apt-get update && apt-get install -yq locales && locale-gen en_US.UTF-8
 ENV LANG='en_US.UTF-8' LC_ALL='en_US.UTF-8'

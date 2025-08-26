@@ -1,7 +1,7 @@
 # Envision the couch potato; be the couch potato
 
 FROM project5/base
-MAINTAINER benjamin.gemmill@gmail.com
+LABEL org.opencontainers.image.authors="benjamin.gemmill@gmail.com"
 
 RUN apt-get update && apt-get install -yq \
       software-properties-common \

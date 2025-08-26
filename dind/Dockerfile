@@ -2,7 +2,7 @@
 # run with --privileged
 
 FROM ubuntu:latest
-MAINTAINER benjamin.gemmill@gmail.com
+LABEL org.opencontainers.image.authors="benjamin.gemmill@gmail.com"
 
 RUN apt-get update \
   && apt-get install -yq curl software-properties-common \

@@ -1,7 +1,7 @@
 # A disposable development environment for java, python, and c++
 
 FROM project5/build
-MAINTAINER benjamin.gemmill@gmail.com
+LABEL org.opencontainers.image.authors="benjamin.gemmill@gmail.com"
 
 # x-swat from https://launchpad.net/~ubuntu-x-swat/+archive/ubuntu/updates
 # conda repository from https://www.anaconda.com/rpm-and-debian-repositories-for-miniconda

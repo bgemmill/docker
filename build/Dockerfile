@@ -1,9 +1,10 @@
 # A disposable build environment for java, python, and c++
 
 FROM project5/base
-MAINTAINER benjamin.gemmill@gmail.com
+LABEL org.opencontainers.image.authors="benjamin.gemmill@gmail.com"
 
-ARG LLVM_VERSION=20
+
+ARG LLVM_VERSION=21
 #ARG MOLD_VERSION=1.11.0
 
 # clang repository from https://apt.llvm.org
@@ -51,23 +52,23 @@ RUN true \
 
 # Ninja
 #RUN apt-get install -yq ninja-build
-#ENV CMAKE_GENERATOR Ninja
+#ENV CMAKE_GENERATOR=Ninja
 
 # Python Poetry
-ENV POETRY_HOME /opt/poetry
+ENV POETRY_HOME=/opt/poetry
 RUN python3 -m venv $POETRY_HOME \
   && $POETRY_HOME/bin/pip install poetry \
   && /opt/poetry/bin/poetry self add poetry-dotenv-plugin
-ENV PATH $POETRY_HOME/bin:$PATH
+ENV PATH=$POETRY_HOME/bin:$PATH
 
 # Mold
-#ENV MOLD_HOME /opt/mold
+#ENV MOLD_HOME=/opt/mold
 #RUN mkdir -p "${MOLD_HOME}" \
 #  && curl -sSL https://github.com/rui314/mold/releases/download/v${MOLD_VERSION}/mold-${MOLD_VERSION}-x86_64-linux.tar.gz > mold.tar.gz \
 #  && tar -xzf mold.tar.gz --strip-components=1 -C "${MOLD_HOME}" \
 #  && rm mold.tar.gz \
 #  && update-alternatives --install /usr/bin/ld ld $MOLD_HOME/bin/mold 1001
-#ENV PATH $MOLD_HOME/bin:$PATH
+#ENV PATH=$MOLD_HOME/bin:$PATH
 
 # For docker-in-docker, make sure that the inner filesystem is not on top of the outer
 #VOLUME ["/var/lib/docker"]

@@ -1,7 +1,7 @@
 # An interactive base image that runs commands as users rather than root
 
 FROM ubuntu:24.04
-MAINTAINER benjamin.gemmill@gmail.com
+LABEL org.opencontainers.image.authors="benjamin.gemmill@gmail.com"
 
 RUN apt-get update
 
