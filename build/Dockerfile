@@ -8,12 +8,13 @@ ARG LLVM_VERSION=22
 
 # clang repository from https://apt.llvm.org
 # cmake repository from https://apt.kitware.com
+      #&& curl https://apt.kitware.com/keys/kitware-archive-latest.asc | apt-key add - \
+      #&& echo "deb https://apt.kitware.com/ubuntu/ `lsb_release -cs` main" >> /etc/apt/sources.list \
+
 # docker repository from https://docs.docker.com/install/linux/docker-ce/ubuntu
 RUN apt-get update && apt-get install -yq curl gpg lsb-release \
       && curl https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - \
       && echo "deb http://apt.llvm.org/`lsb_release -cs`/ llvm-toolchain-`lsb_release -cs`-${LLVM_VERSION} main" >> /etc/apt/sources.list \
-      && curl https://apt.kitware.com/keys/kitware-archive-latest.asc | apt-key add - \
-      && echo "deb https://apt.kitware.com/ubuntu/ `lsb_release -cs` main" >> /etc/apt/sources.list \
       && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
       && echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" >> /etc/apt/sources.list
 
