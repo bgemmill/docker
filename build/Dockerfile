@@ -47,6 +47,7 @@ RUN true \
   && update-alternatives --install /usr/bin/ranlib ranlib /usr/bin/llvm-ranlib-${LLVM_VERSION} 1000 \
   && update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-${LLVM_VERSION} 1000 \
   && update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-${LLVM_VERSION} 1000 \
+  && update-alternatives --install /usr/bin/run-clang-tidy run-clang-tidy /usr/bin/run-clang-tidy-${LLVM_VERSION} 1000 \
   && update-alternatives --install /usr/bin/lldb lldb /usr/bin/lldb-${LLVM_VERSION} 1000 \
   && update-alternatives --install /usr/bin/llvm-symbolizer llvm-symbolizer /usr/bin/llvm-symbolizer-${LLVM_VERSION} 1000 \
   && update-alternatives --install /usr/bin/addr2line addr2line /usr/bin/llvm-addr2line-${LLVM_VERSION} 1000
