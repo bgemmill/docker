@@ -12,12 +12,19 @@ LABEL org.opencontainers.image.authors="benjamin.gemmill@gmail.com"
       #&& curl https://repo.anaconda.com/pkgs/misc/gpgkeys/anaconda.asc | apt-key add - \
       #&& echo "deb https://repo.anaconda.com/pkgs/misc/debrepo/conda stable main" >> /etc/apt/sources.list
 
+# lemonade from ubuntu ppa
+RUN apt-get update && apt-get install -yq curl gpg lsb-release \
+      && gpg --keyserver hkps://keyserver.ubuntu.com --recv-keys 881CF4B40B0BFA288D6776E83BF36CFA0BD50AEC \
+      && gpg --export 881CF4B40B0BFA288D6776E83BF36CFA0BD50AEC | tee /etc/apt/keyrings/lemonade.gpg > /dev/null \
+      && echo "deb [signed-by=/etc/apt/keyrings/lemonade.gpg] https://ppa.launchpadcontent.net/lemonade-team/stable/ubuntu $(lsb_release -cs) main" >> /etc/apt/sources.list
+
 RUN apt-get update && apt-get install -yq \
       sudo \
       vim less bash-completion htop \
       iputils-ping lsof \
       openssh-client rsync curl telnet \
-      cmake-curses-gui
+      cmake-curses-gui \
+      lemonade-server
 
 # Python
 #RUN /opt/conda/bin/conda update -n base -c defaults conda
