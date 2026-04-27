@@ -15,6 +15,11 @@ else
   USER_ID=1000
 fi
 
+# the render group's id is not standardized, so we check for it
+if [ -e "/dev/dri/renderD128" ]; then
+  groupadd -g $(stat --format=%g /dev/dri/renderD128) render
+fi
+
 # create the groups
 echo $USER_GROUPS | tr ',' ' ' | xargs -n1  groupadd -f
 # create that user
