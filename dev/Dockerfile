@@ -13,18 +13,18 @@ LABEL org.opencontainers.image.authors="benjamin.gemmill@gmail.com"
       #&& echo "deb https://repo.anaconda.com/pkgs/misc/debrepo/conda stable main" >> /etc/apt/sources.list
 
 # lemonade from ubuntu ppa
-RUN apt-get update && apt-get install -yq curl gpg lsb-release \
-      && gpg --keyserver hkps://keyserver.ubuntu.com --recv-keys 881CF4B40B0BFA288D6776E83BF36CFA0BD50AEC \
-      && gpg --export 881CF4B40B0BFA288D6776E83BF36CFA0BD50AEC | tee /etc/apt/keyrings/lemonade.gpg > /dev/null \
-      && echo "deb [signed-by=/etc/apt/keyrings/lemonade.gpg] https://ppa.launchpadcontent.net/lemonade-team/stable/ubuntu $(lsb_release -cs) main" >> /etc/apt/sources.list
+#RUN apt-get update && apt-get install -yq curl gpg lsb-release \
+#      && gpg --keyserver hkps://keyserver.ubuntu.com --recv-keys 881CF4B40B0BFA288D6776E83BF36CFA0BD50AEC \
+#      && gpg --export 881CF4B40B0BFA288D6776E83BF36CFA0BD50AEC | tee /etc/apt/keyrings/lemonade.gpg > /dev/null \
+#      && echo "deb [signed-by=/etc/apt/keyrings/lemonade.gpg] https://ppa.launchpadcontent.net/lemonade-team/stable/ubuntu $(lsb_release -cs) main" >> /etc/apt/sources.list
 
 RUN apt-get update && apt-get install -yq \
       sudo \
       vim less bash-completion htop \
       iputils-ping lsof \
       openssh-client rsync curl telnet \
-      cmake-curses-gui \
-      lemonade-server
+      cmake-curses-gui
+      #lemonade-server
 
 # Python
 #RUN /opt/conda/bin/conda update -n base -c defaults conda
@@ -76,6 +76,11 @@ RUN curl -o vscode.deb -L "https://code.visualstudio.com/sha/download?build=stab
 # Graphical Git diff
 #RUN apt-get install -yq --no-install-recommends gnome-icon-theme meld
 
+# llama.cpp
+RUN llama_version=$(curl -ILs -o /dev/null -w %{url_effective} https://github.com/ggml-org/llama.cpp/releases/latest | awk -F/ '{print $NF}') \
+  && curl -L https://github.com/ggml-org/llama.cpp/releases/download/${llama_version}/llama-${llama_version}-bin-ubuntu-vulkan-x64.tar.gz | tar xz \
+  && mv llama-${llama_version} /opt/llama.cpp \
+  && apt-get install -yq libgomp1 libvulkan1
 
 # Start up the IDEs like this once you're in.
 #/opt/idea/bin/idea.sh > /dev/null 2>&1
