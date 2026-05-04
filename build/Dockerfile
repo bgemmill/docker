@@ -61,7 +61,7 @@ ENV POETRY_HOME=/opt/poetry
 RUN python3 -m venv $POETRY_HOME \
   && $POETRY_HOME/bin/pip install poetry \
   && $POETRY_HOME/bin/poetry self add poetry-dotenv-plugin \
-  && $POETRY_HOME/bin/poetry self add setuptools
+  && $POETRY_HOME/bin/poetry self add setuptools # for thrift-python
 ENV PATH=$POETRY_HOME/bin:$PATH
 
 # For docker-in-docker, make sure that the inner filesystem is not on top of the outer
