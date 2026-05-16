@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -yq \
   vim less iputils-ping \
   rsync
 
-RUN mkdir /var/run/sshd
+RUN mkdir -p /var/run/sshd
 
 ADD authorized_keys /root/.ssh/authorized_keys
 RUN chmod 700 /root/.ssh && chmod 600 /root/.ssh/* && chown -Rf root:root /root/.ssh
