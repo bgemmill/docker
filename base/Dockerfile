@@ -1,6 +1,6 @@
 # An interactive base image that runs commands as users rather than root
 
-FROM ubuntu:24.04
+FROM ubuntu:26.04
 LABEL org.opencontainers.image.authors="benjamin.gemmill@gmail.com"
 
 # in case of archive.ubuntu.com outages, switch to constant.com
