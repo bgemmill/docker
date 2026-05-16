@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -yq locales && locale-gen en_US.UTF-8
 ENV LANG='en_US.UTF-8' LC_ALL='en_US.UTF-8'
 
 RUN apt-get update && apt-get install -yq curl gpg lsb-release \
-      && curl "https://dl.winehq.org/wine-builds/winehq.key" > /etc/apt/keyrings/winehq-archive.key \
+      && curl "https://dl.winehq.org/wine-builds/winehq.key" | gpg --dearmor -o /etc/apt/keyrings/winehq-archive.key \
       && curl "https://dl.winehq.org/wine-builds/ubuntu/dists/$(lsb_release -cs)/winehq-$(lsb_release -cs).sources" > /etc/apt/sources.list.d/winehq-$(lsb_release -cs).sources
 
 RUN dpkg --add-architecture i386
