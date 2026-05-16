@@ -8,13 +8,10 @@ LABEL org.opencontainers.image.authors="benjamin.gemmill@gmail.com"
 RUN sed -i -e 's#http://security.ubuntu.com#http://ubuntu.mirror.constant.com#' /etc/apt/sources.list.d/ubuntu.sources
 RUN sed -i -e 's#http://archive.ubuntu.com#http://ubuntu.mirror.constant.com#' /etc/apt/sources.list.d/ubuntu.sources
 
-RUN apt-get update \
-  && apt-get install -yq curl software-properties-common \
-  && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
-  && add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
-   stable"
+# docker repository from https://docs.docker.com/install/linux/docker-ce/ubuntu
+RUN apt-get update && apt-get install -yq curl gpg lsb-release \
+      && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg \
+      && echo "deb [signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" >> /etc/apt/sources.list
 
 RUN apt-get update
 
