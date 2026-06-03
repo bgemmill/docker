@@ -25,7 +25,7 @@ COPY Picard.conf /home/docker/.config/MusicBrainz/Picard.conf
 RUN chmod -R a+rw /home/docker/.config
 
 #QT4 needs a hint to render properly
-ENV QT_GRAPHICSSYSTEM "native"
+ENV QT_GRAPHICSSYSTEM="native"
 ENV QT_X11_NO_MITSHM=1
 
 RUN apt-get purge -yq software-properties-common \
