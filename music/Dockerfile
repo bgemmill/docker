@@ -3,21 +3,17 @@
 FROM project5/base
 LABEL org.opencontainers.image.authors="benjamin.gemmill@gmail.com"
 
-RUN apt-get update && apt-get install -yq \
-      software-properties-common \
-      && add-apt-repository ppa:musicbrainz-developers/stable
+# musicbrainz repository from https://launchpad.net/~musicbrainz-developers/+archive/ubuntu/stable
+#RUN apt-get update && apt-get install -yq curl gpg lsb-release \
+#      && curl "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xec282bb65cd954e72bb863887038b2dac2c64585" | gpg --dearmor -o /etc/apt/keyrings/musicbrainz.gpg \
+#      && echo "deb [signed-by=/etc/apt/keyrings/musicbrainz.gpg] https://ppa.launchpadcontent.net/musicbrainz-developers/stable/ubuntu `lsb_release -cs` main" >> /etc/apt/sources.list
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -yq \
       vim less \
       picard libchromaprint-tools \
-      vorbisgain flac wavpack \
+      rsgain vorbisgain flac wavpack \
       curl
 #rhythmbox rhythmbox-plugin-cdrecorder - ripping CDs
-
-RUN curl -o rsgain.deb -L "https://github.com/complexlogic/rsgain/releases/download/v3.0.1/rsgain_3.0.1_amd64.deb" \
-      && dpkg -i rsgain.deb \
-      ; apt-get -f -yq install \
-      && rm rsgain.deb
 
 # Bring in our settings
 RUN mkdir -p /usr/lib/picard/contrib/plugins
