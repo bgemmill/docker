@@ -3,40 +3,21 @@
 FROM project5/build
 LABEL org.opencontainers.image.authors="benjamin.gemmill@gmail.com"
 
-# x-swat from https://launchpad.net/~ubuntu-x-swat/+archive/ubuntu/updates
-# conda repository from https://www.anaconda.com/rpm-and-debian-repositories-for-miniconda
-#RUN apt-get update && apt-get install -yq curl gpg lsb-release \
-      #&& curl "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x643dc6bd56580ceb1ab4a9f63b22ab97af1cdfa9" | apt-key add - \
-      #&& echo "deb http://ppa.launchpad.net/ubuntu-x-swat/updates/ubuntu $(lsb_release -cs) main" >> /etc/apt/sources.list \
-      #&& apt-get update && apt-get upgrade -y
-      #&& curl https://repo.anaconda.com/pkgs/misc/gpgkeys/anaconda.asc | apt-key add - \
-      #&& echo "deb https://repo.anaconda.com/pkgs/misc/debrepo/conda stable main" >> /etc/apt/sources.list
-
-# lemonade from ubuntu ppa
-#RUN apt-get update && apt-get install -yq curl gpg lsb-release \
-#      && gpg --keyserver hkps://keyserver.ubuntu.com --recv-keys 881CF4B40B0BFA288D6776E83BF36CFA0BD50AEC \
-#      && gpg --export 881CF4B40B0BFA288D6776E83BF36CFA0BD50AEC | tee /etc/apt/keyrings/lemonade.gpg > /dev/null \
-#      && echo "deb [signed-by=/etc/apt/keyrings/lemonade.gpg] https://ppa.launchpadcontent.net/lemonade-team/stable/ubuntu $(lsb_release -cs) main" >> /etc/apt/sources.list
-
 RUN apt-get update && apt-get install -yq \
       sudo \
       vim less bash-completion htop \
       iputils-ping lsof \
       openssh-client rsync curl telnet \
       cmake-curses-gui
-      #lemonade-server
-
-# Python
-#RUN /opt/conda/bin/conda update -n base -c defaults conda
 
 # SQL IDE
 #RUN curl "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x4a71b51882788fd2" | apt-key add - \
 #  && echo "deb http://ppa.launchpad.net/serge-rider/dbeaver-ce/ubuntu $(lsb_release -cs) main" >> /etc/apt/sources.list \
 #  && apt-get update && apt-get install -yq dbeaver-ce libswt-gtk-4-jni
-RUN curl -L "https://dbeaver.io/files/dbeaver-ce-latest-linux.gtk.x86_64.tar.gz" | tar xz \
-      && mv dbeaver /opt/dbeaver && chmod a+x /opt/dbeaver/dbeaver \
-      && chmod -R a+w /opt/dbeaver \
-      && apt-get install -yq libswt-gtk-4-jni
+#RUN curl -L "https://dbeaver.io/files/dbeaver-ce-latest-linux.gtk.x86_64.tar.gz" | tar xz \
+#      && mv dbeaver /opt/dbeaver && chmod a+x /opt/dbeaver/dbeaver \
+#      && chmod -R a+w /opt/dbeaver \
+#      && apt-get install -yq libswt-gtk-4-jni
 
 # Python IDE
 #RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linux&code=PCC" | tar xz && mv pycharm* /opt/pycharm \
