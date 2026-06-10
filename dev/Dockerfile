@@ -3,12 +3,18 @@
 FROM project5/build
 LABEL org.opencontainers.image.authors="benjamin.gemmill@gmail.com"
 
+
+# vscode repository from https://code.visualstudio.com/docs/setup/linux
+RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor -o /etc/apt/keyrings/microsoft.gpg \
+    && echo "deb [signed-by=/etc/apt/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/code stable main" >> /etc/apt/sources.list
+
 RUN apt-get update && apt-get install -yq \
       sudo \
       vim less bash-completion htop \
       iputils-ping lsof \
       openssh-client rsync curl telnet \
-      cmake-curses-gui
+      cmake-curses-gui \
+      code
 
 # SQL IDE
 #RUN curl "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x4a71b51882788fd2" | apt-key add - \
@@ -43,11 +49,11 @@ RUN apt-get update && apt-get install -yq \
 #      && apt-get -yq purge p7zip
 
 # vscode
-RUN curl -o vscode.deb -L "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64" \
-      && dpkg -i vscode.deb \
-      ; apt-get -f -yq install \
-      && rm vscode.deb
-      #&& apt-get install -yq gdb
+#RUN curl -o vscode.deb -L "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64" \
+#      && dpkg -i vscode.deb \
+#      ; apt-get -f -yq install \
+#      && rm vscode.deb
+#      #&& apt-get install -yq gdb
 
 # clion
 #RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linux&code=CL" | tar xz && mv clion* /opt/clion \
