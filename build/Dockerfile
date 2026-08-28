@@ -4,7 +4,7 @@ FROM project5/base
 LABEL org.opencontainers.image.authors="benjamin.gemmill@gmail.com"
 
 
-ARG LLVM_VERSION=22
+ARG LLVM_VERSION=23
 
 # clang repository from https://apt.llvm.org
 # cmake repository from https://apt.kitware.com
