@@ -65,8 +65,9 @@ RUN apt-get update && apt-get install -yq \
 
 # llama.cpp
 RUN llama_version=$(curl -ILs -o /dev/null -w %{url_effective} https://github.com/ggml-org/llama.cpp/releases/latest | awk -F/ '{print $NF}') \
-  && curl -L https://github.com/ggml-org/llama.cpp/releases/download/${llama_version}/llama-${llama_version}-bin-ubuntu-vulkan-x64.tar.gz | tar xz \
-  && mv llama-${llama_version} /opt/llama.cpp \
+  && llama_build=$(curl -Ls https://github.com/ggml-org/llama.cpp/releases/download/${llama_version}/nightly-tag.txt) \
+  && curl -Ls https://github.com/ggml-org/llama.cpp/releases/download/${llama_build}/llama-${llama_build}-bin-ubuntu-vulkan-x64.tar.gz | tar xz \
+  && mv llama-${llama_build} /opt/llama.cpp \
   && apt-get install -yq libgomp1 libvulkan1
 
 # Start up the IDEs like this once you're in.
@@ -78,4 +79,5 @@ RUN llama_version=$(curl -ILs -o /dev/null -w %{url_effective} https://github.co
 RUN apt-get autoremove -yq \
   && apt-get autoclean -yq \
   && rm -rf /var/lib/apt/lists/*
+
 
