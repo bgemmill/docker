@@ -5,8 +5,11 @@ LABEL org.opencontainers.image.authors="benjamin.gemmill@gmail.com"
 
 
 # vscode repository from https://code.visualstudio.com/docs/setup/linux
+# dbeaver repository from https://dbeaver.io/download/ [pick debian]
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor -o /etc/apt/keyrings/microsoft.gpg \
-    && echo "deb [signed-by=/etc/apt/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/code stable main" >> /etc/apt/sources.list
+    && echo "deb [signed-by=/etc/apt/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/code stable main" >> /etc/apt/sources.list \
+    && curl https://dbeaver.io/debs/dbeaver.gpg.key | gpg --dearmor -o /etc/apt/keyrings/dbeaver.gpg.key \
+    && echo "deb [signed-by=/etc/apt/keyrings/dbeaver.gpg.key] https://dbeaver.io/debs/dbeaver-ce /" | tee /etc/apt/sources.list.d/dbeaver.list
 
 RUN apt-get update && apt-get install -yq \
       sudo \
@@ -14,16 +17,8 @@ RUN apt-get update && apt-get install -yq \
       iputils-ping lsof \
       openssh-client rsync curl telnet \
       cmake-curses-gui \
-      code
-
-# SQL IDE
-#RUN curl "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x4a71b51882788fd2" | apt-key add - \
-#  && echo "deb http://ppa.launchpad.net/serge-rider/dbeaver-ce/ubuntu $(lsb_release -cs) main" >> /etc/apt/sources.list \
-#  && apt-get update && apt-get install -yq dbeaver-ce libswt-gtk-4-jni
-#RUN curl -L "https://dbeaver.io/files/dbeaver-ce-latest-linux.gtk.x86_64.tar.gz" | tar xz \
-#      && mv dbeaver /opt/dbeaver && chmod a+x /opt/dbeaver/dbeaver \
-#      && chmod -R a+w /opt/dbeaver \
-#      && apt-get install -yq libswt-gtk-4-jni
+      code \
+      dbeaver-ce libswt-gtk-4-jni
 
 # Python IDE
 #RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linux&code=PCC" | tar xz && mv pycharm* /opt/pycharm \
