@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -yq \
       openssh-client rsync curl telnet \
       cmake-curses-gui \
       code \
-      dbeaver-ce libswt-gtk-4-jni
+      dbeaver-ce
 
 # Python IDE
 #RUN curl -L "https://data.services.jetbrains.com/products/download?platform=linux&code=PCC" | tar xz && mv pycharm* /opt/pycharm \
